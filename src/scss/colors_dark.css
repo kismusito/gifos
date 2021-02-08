@@ -1,0 +1,7 @@
+:root {
+    --background_color: #37383C;
+    --text_titles: #fff;
+    --text_color: #fff;
+    --main_logo_desktop: url("../../assets/img/Logo-modo-noc.svg");
+    --main_logo_mobile: url("../../assets/img/logo-mobile-modo-noct.svg");
+}

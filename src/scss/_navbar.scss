@@ -1,0 +1,65 @@
+nav {
+    height: 90px;
+
+    .custom_navbar {
+        @include custom_center(row, center, space-between);
+        height: inherit;
+
+        .custom_logo_desing {
+            figure {
+                background-image: $logo_desktop;
+                background-size: contain;
+                width: 40px;
+                height: 40px;
+                background-repeat: no-repeat;
+            }
+        }
+
+        .desktop_menu {
+            display: grid;
+            grid-template-columns: repeat(4, auto);
+            justify-content: center;
+            grid-gap: 30px;
+            height: inherit;
+            align-items: center;
+        }
+
+        .menu_item {
+            @include custom_center(column, center, center);
+            height: inherit;
+            text-align: center;
+            color: $color_titles;
+            font-family: $bold;
+            font-size: 13px;
+
+            a {
+                color: $color_titles;
+                font-family: $bold;
+            }
+
+            .custom_add_circle {
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                border: 1px solid $color_titles;
+                transition: .5s all;
+
+                &:hover {
+                    background-color: $color_titles;
+
+                    a {
+                        color: $color_text;
+                    }
+                }
+
+                a {
+                    @include custom_center(column, center, center);
+                    font-family: $regular;
+                    font-size: 25px;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+}

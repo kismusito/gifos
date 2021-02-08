@@ -1,0 +1,332 @@
+@font-face {
+  font-family: Montserrat_light;
+  src: url("../../assets/fonts/Montserrat-Light.ttf") format("truetype"); }
+@font-face {
+  font-family: Montserrat_regular;
+  src: url("../../assets/fonts/Montserrat-Regular.ttf") format("truetype"); }
+@font-face {
+  font-family: Montserrat_bold;
+  src: url("../../assets/fonts/Montserrat-Bold.ttf") format("truetype");
+  font-weight: bold; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box; }
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+a {
+  text-decoration: none; }
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol,
+ul {
+  list-style: none; }
+
+blockquote,
+q {
+  quotes: none; }
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+nav {
+  height: 90px; }
+  nav .custom_navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: inherit; }
+    nav .custom_navbar .custom_logo_desing figure {
+      background-image: var(--main_logo_desktop);
+      background-size: contain;
+      width: 40px;
+      height: 40px;
+      background-repeat: no-repeat; }
+    nav .custom_navbar .desktop_menu {
+      display: grid;
+      grid-template-columns: repeat(4, auto);
+      justify-content: center;
+      grid-gap: 30px;
+      height: inherit;
+      align-items: center; }
+    nav .custom_navbar .menu_item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: inherit;
+      text-align: center;
+      color: var(--text_titles);
+      font-family: Montserrat_bold;
+      font-size: 13px; }
+      nav .custom_navbar .menu_item a {
+        color: var(--text_titles);
+        font-family: Montserrat_bold; }
+      nav .custom_navbar .menu_item .custom_add_circle {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--text_titles);
+        transition: .5s all; }
+        nav .custom_navbar .menu_item .custom_add_circle:hover {
+          background-color: var(--text_titles); }
+          nav .custom_navbar .menu_item .custom_add_circle:hover a {
+            color: var(--text_color); }
+        nav .custom_navbar .menu_item .custom_add_circle a {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          font-family: Montserrat_regular;
+          font-size: 25px;
+          width: 100%;
+          height: 100%; }
+
+.search_section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 450px;
+  padding: 20px 0; }
+  .search_section h2 {
+    font-family: Montserrat_bold;
+    color: var(--text_titles);
+    font-size: 2em;
+    text-align: center; }
+    .search_section h2 .decorated_text_color {
+      color: #5ED7C6; }
+  .search_section .search_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+    .search_section .search_container .prediction_search_container {
+      position: relative;
+      width: 500px;
+      min-height: 50px;
+      border: 1px solid var(--text_titles);
+      border-radius: 27px;
+      padding: 11px 20px; }
+      .search_section .search_container .prediction_search_container input {
+        border: 0;
+        min-height: 25px;
+        outline: none;
+        font-family: Montserrat_regular;
+        color: var(--text_color);
+        font-size: 15px;
+        background-color: transparent;
+        width: 100%;
+        padding: 0 20px; }
+      .search_section .search_container .prediction_search_container #loader_elements {
+        position: absolute;
+        border-width: 1px;
+        border-style: solid;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border-color: var(--text_titles) var(--text_titles) transparent var(--text_titles);
+        animation: rotate_spiral 0.5s infinite linear;
+        display: none;
+        right: 23px;
+        top: 15px; }
+@keyframes rotate_spiral {
+  to {
+    transform: rotate(360deg); } }
+      .search_section .search_container .prediction_search_container #predictions_area_section .predictions_area_item:first-child {
+        border-top: 1px solid #9cafc3;
+        margin-top: 5px; }
+      .search_section .search_container .prediction_search_container .predictions_area_item {
+        cursor: pointer;
+        padding: 5px 20px;
+        color: #9cafc3; }
+        .search_section .search_container .prediction_search_container .predictions_area_item:hover {
+          background-color: #f3f3f3; }
+  .search_section #search_area_section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px;
+    margin: 20px 0; }
+    .search_section #search_area_section .gif--container {
+      width: 24%;
+      height: 180px;
+      margin-bottom: 20px;
+      position: relative;
+      transition: 0.5s all; }
+      .search_section #search_area_section .gif--container .gif--img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; }
+      .search_section #search_area_section .gif--container .gif--hover-container {
+        display: none;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(87, 46, 229, 0.6); }
+        .search_section #search_area_section .gif--container .gif--hover-container .gif--content-actions {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: 10px;
+          right: 10px; }
+          .search_section #search_area_section .gif--container .gif--hover-container .gif--content-actions .gif--content-action-item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            background-color: #fff;
+            margin: 0 5px; }
+        .search_section #search_area_section .gif--container .gif--hover-container .gif--info {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+          position: absolute;
+          bottom: 10px;
+          left: 10px;
+          color: #fff; }
+          .search_section #search_area_section .gif--container .gif--hover-container .gif--info .gif--info-subtitle {
+            font-size: .8rem;
+            margin-bottom: 3px; }
+          .search_section #search_area_section .gif--container .gif--hover-container .gif--info .gif--info-title {
+            font-family: Montserrat_bold; }
+      .search_section #search_area_section .gif--container:hover .gif--hover-container {
+        display: block; }
+
+body {
+  font-family: Montserrat_regular;
+  min-height: 100vh;
+  background-color: var(--background_color); }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto; }
+
+/*# sourceMappingURL=style.css.map */

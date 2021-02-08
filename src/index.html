@@ -4,6 +4,79 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Gifos</title>
+
+        <!-- Load Css Files -->
+
+        <script>
+            const actualTheme = localStorage.getItem("theme");
+            var link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.type = "text/css";
+            if (actualTheme) {
+                link.href = "scss/colors_" + actualTheme + ".css";
+            } else {
+                link.href = "scss/colors_light.css";
+            }
+
+            document.getElementsByTagName("HEAD")[0].appendChild(link);
+        </script>
+
+        <link rel="stylesheet" href="scss/style.css" />
+
+        <!-- Load main chunk JS -->
+        <script defer type="module" src="js/index.js"></script>
     </head>
-    <body></body>
+    <body>
+        <div class="container">
+            <header>
+                <nav>
+                    <div class="custom_navbar">
+                        <div class="custom_logo_desing">
+                            <figure></figure>
+                        </div>
+                        <ul class="desktop_menu">
+                            <li class="menu_item">MODO NOCTURNO</li>
+                            <li class="menu_item"><a href="#">FAVORITOS</a></li>
+                            <li class="menu_item"><a href="#">MIS GIFOS</a></li>
+                            <li class="menu_item">
+                                <div class="custom_add_circle">
+                                    <a href="#">+</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+            <section class="search_section">
+                <h2>
+                    Inspírate, busca, guarda, y crea <br & />
+                    los mejores
+                    <span class="decorated_text_color">GIFOS</span>
+                </h2>
+
+                <div class="search_container">
+                    <img
+                        src="../assets/img/ilustra_header.svg"
+                        alt="search input illustration"
+                    />
+                    <div class="prediction_search_container">
+                        <input
+                            type="text"
+                            name="user_prediction"
+                            id="user_prediction"
+                            placeholder="Busca GIFOS y más"
+                        />
+                        <div id="loader_elements"></div>
+
+                        <ul id="predictions_area_section"></ul>
+                    </div>
+                </div>
+
+                <div id="search_area_section">
+                    
+                </div>
+            </section>
+        </div>
+    </body>
 </html>

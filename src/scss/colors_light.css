@@ -1,0 +1,7 @@
+:root {
+    --background_color: #fff;
+    --text_titles: #572EE5;
+    --text_color: #333;
+    --main_logo_desktop: url('../../assets/img/logo-desktop.svg');
+    --main_logo_mobile: url('../../assets/img/logo-mobile.svg');
+}

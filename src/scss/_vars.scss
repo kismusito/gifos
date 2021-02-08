@@ -1,0 +1,26 @@
+$background-color: var(--background_color);
+$logo_desktop: var(--main_logo_desktop);
+$logo_mobile: var(--main_logo_mobile);
+$color_titles: var(--text_titles);
+$color_text: var(--text_color);
+$color_text_variant: #5ED7C6;
+$hover_gif_color: rgba(87, 46, 229 , .6);
+
+$light: Montserrat_light;
+$regular: Montserrat_regular;
+$bold: Montserrat_bold;
+
+@mixin custom_center($direction, $x, $y) {
+    display: flex;
+    flex-direction: $direction;
+
+    @if $direction == "row" {
+        align-items: $x;
+        justify-content: $y;
+    }
+
+    @if $direction == "column" {
+        align-items: $y;
+        justify-content: $x;
+    }
+}

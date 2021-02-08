@@ -1,0 +1,148 @@
+.search_section {
+    @include custom_center(column, center, center);
+    min-height: 450px;
+    padding: 20px 0;
+
+    h2 {
+        font-family: $bold;
+        color: $color_titles;
+        font-size: 2em;
+        text-align: center;
+
+        .decorated_text_color {
+            color: $color_text_variant;
+        }
+    }
+
+    .search_container {
+        @include custom_center(column, center, center);
+
+        .prediction_search_container {
+            position: relative;
+            width: 500px;
+            min-height: 50px;
+            border: 1px solid $color_titles;
+            border-radius: 27px;
+            padding: 11px 20px;
+
+            input {
+                border: 0;
+                min-height: 25px;
+                outline: none;
+                font-family: $regular;
+                color: $color_text;
+                font-size: 15px;
+                background-color: transparent;
+                width: 100%;
+                padding: 0 20px;
+            }
+
+            #loader_elements {
+                position: absolute;
+                border-width: 1px;
+                border-style: solid;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                border-color: $color_titles $color_titles transparent
+                    $color_titles;
+                animation: rotate_spiral 0.5s infinite linear;
+                display: none;
+                right: 23px;
+                top: 15px;
+
+                @keyframes rotate_spiral {
+                    to {
+                        transform: rotate(360deg);
+                    }
+                }
+            }
+
+            #predictions_area_section .predictions_area_item:first-child {
+                border-top: 1px solid #9cafc3;
+                margin-top: 5px;
+            }
+
+            .predictions_area_item {
+                cursor: pointer;
+                padding: 5px 20px;
+                color: #9cafc3;
+
+                &:hover {
+                    background-color: #f3f3f3;
+                }
+            }
+        }
+    }
+
+    #search_area_section {
+        @include custom_center(row, center, space-between);
+        flex-wrap: wrap;
+        width: 100%;
+        padding: 10px;
+        margin: 20px 0;
+
+        .gif--container {
+            width: 24%;
+            height: 180px;
+            margin-bottom: 20px;
+            position: relative;
+            transition: 0.5s all;
+
+            .gif--img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .gif--hover-container {
+                display: none;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: $hover_gif_color;
+
+                .gif--content-actions {
+                    @include custom_center(row, center, center);
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+
+                    .gif--content-action-item {
+                        @include custom_center(row, center, center);
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 6px;
+                        background-color: #fff;
+                        margin: 0 5px;
+                    }
+                }
+
+                .gif--info {
+                    @include custom_center(column, center, flex-start);
+                    position: absolute;
+                    bottom: 10px;
+                    left: 10px;
+                    color: #fff;
+
+                    .gif--info-subtitle {
+                        font-size: .8rem;
+                        margin-bottom: 3px;
+                    }
+
+                    .gif--info-title {
+                        font-family: $bold;
+                    }
+                }
+            }
+
+            &:hover {
+                .gif--hover-container {
+                    display: block;
+                }
+            }
+        }
+    }
+}
