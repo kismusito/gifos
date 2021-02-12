@@ -16,6 +16,7 @@
 
     .search_container {
         @include custom_center(column, center, center);
+        margin-top: 30px;
 
         .prediction_search_container {
             position: relative;
@@ -85,64 +86,6 @@
         .gif--container {
             width: 24%;
             height: 180px;
-            margin-bottom: 20px;
-            position: relative;
-            transition: 0.5s all;
-
-            .gif--img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
-            .gif--hover-container {
-                display: none;
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                top: 0;
-                left: 0;
-                background-color: $hover_gif_color;
-
-                .gif--content-actions {
-                    @include custom_center(row, center, center);
-                    position: absolute;
-                    top: 10px;
-                    right: 10px;
-
-                    .gif--content-action-item {
-                        @include custom_center(row, center, center);
-                        width: 32px;
-                        height: 32px;
-                        border-radius: 6px;
-                        background-color: #fff;
-                        margin: 0 5px;
-                    }
-                }
-
-                .gif--info {
-                    @include custom_center(column, center, flex-start);
-                    position: absolute;
-                    bottom: 10px;
-                    left: 10px;
-                    color: #fff;
-
-                    .gif--info-subtitle {
-                        font-size: .8rem;
-                        margin-bottom: 3px;
-                    }
-
-                    .gif--info-title {
-                        font-family: $bold;
-                    }
-                }
-            }
-
-            &:hover {
-                .gif--hover-container {
-                    display: block;
-                }
-            }
         }
     }
 }

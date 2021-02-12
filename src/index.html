@@ -23,6 +23,19 @@
 
         <link rel="stylesheet" href="scss/style.css" />
 
+        <!-- Import Material UI Icons -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Icons"
+            rel="stylesheet"
+        />
+
+        <!-- Import font awesome kit, this library has a problem because the performance of the site is very low -->
+        <script
+            src="https://kit.fontawesome.com/99b4d81792.js"
+            crossorigin="anonymous"
+        ></script>
+
+
         <!-- Load main chunk JS -->
         <script defer type="module" src="js/index.js"></script>
     </head>
@@ -73,10 +86,45 @@
                     </div>
                 </div>
 
-                <div id="search_area_section">
-                    
+                <div id="trending_searchs--container">
+                    <h3>Trending</h3>
+                    <div id="trending_searchs"></div>
                 </div>
+
+                <div id="search_area_section"></div>
             </section>
         </div>
+
+        <section class="trending_container">
+            <div class="container">
+                <div class="trending_container--heading">
+                    <h2>Trending GIFOS</h2>
+                    <p>Mira los últimos GIFOS de nuestra comunidad.</p>
+                </div>
+
+                <div class="trending_slider--container">
+                    <div class="arrow_button arrow_left" id="trending_slider--prev_button">
+                        <span class="material-icons">
+                            keyboard_arrow_left
+                        </span>
+                    </div>
+                    <div class="trending_slider--container-content">
+                        <div id="trending_slider--content"></div>
+                    </div>
+                    <div class="arrow_button arrow_right" id="trending_slider--next_button">
+                        <span class="material-icons">
+                            keyboard_arrow_right
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container center_footer">
+                <div>Compartir en: </div>
+                <div>&copy; GIFOS - Juan Araque 2021 All Rights Reserved.</div>
+            </div>
+        </footer>
     </body>
 </html>

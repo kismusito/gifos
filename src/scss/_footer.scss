@@ -1,0 +1,9 @@
+footer {
+    height: 116px;
+
+    .center_footer {
+        @include custom_center(row, center, space-between);
+        height: 100%;
+        color: $color_text;
+    }
+}

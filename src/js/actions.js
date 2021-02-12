@@ -18,8 +18,19 @@ export const getSuggestionGifs = async (query) => {
     return convertRequest;
 };
 
-const getTrendingGifs = async (_) => {
-    const request = await fetch(getCompleteURL("trending?limit=1"));
+export const getTrendingGifs = async (totalSlides = 8) => {
+    const request = await fetch(
+        getCompleteURL(`gifs/trending?limit=${totalSlides}&`)
+    );
+    const convertRequest = await request.json();
+
+    return convertRequest;
+};
+
+export const getTrendingSearchesGifs = async () => {
+    const request = await fetch(
+        getCompleteURL(`trending/searches?limit=5&`)
+    );
     const convertRequest = await request.json();
 
     return convertRequest;

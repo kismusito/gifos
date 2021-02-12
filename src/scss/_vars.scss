@@ -1,10 +1,13 @@
 $background-color: var(--background_color);
+$background-secondary: var(--background_secondary);
 $logo_desktop: var(--main_logo_desktop);
 $logo_mobile: var(--main_logo_mobile);
 $color_titles: var(--text_titles);
+$color_hover_text: var(--text_color_hover);
 $color_text: var(--text_color);
-$color_text_variant: #5ED7C6;
-$hover_gif_color: rgba(87, 46, 229 , .6);
+$color_text_variant: #5ed7c6;
+$purple_color: #572EE5;
+$hover_gif_color: rgba(87, 46, 229, 0.6);
 
 $light: Montserrat_light;
 $regular: Montserrat_regular;

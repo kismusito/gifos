@@ -1,4 +1,4 @@
-import { getSuggestionGifs, getGifs } from "./actions.js";
+import { getSuggestionGifs, getGifs , getTrendingSearchesGifs } from "./actions.js";
 import { elementCreator } from "./creator.js";
 import { gifLayout } from "./layouts.js";
 
@@ -61,8 +61,9 @@ async function getSearch(term, icon) {
 
 var timeout = null;
 
-function predictSearch() {
+(async () => {
     const searchInput = getByID("user_prediction");
+    const trending_searchs = getByID("trending_searchs");
     const searchIcon = getByID("loader_elements");
 
     if (searchInput) {
@@ -75,6 +76,9 @@ function predictSearch() {
             );
         });
     }
-}
 
-predictSearch();
+    if(trending_searchs) {
+        const searchs = await getTrendingSearchesGifs();
+        console.log(searchs)
+    }
+})();

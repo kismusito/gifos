@@ -1,3 +1,3 @@
-export function initSlider() {
+export function Slider(slides , totalSlidesToShow) {
     
 }

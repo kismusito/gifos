@@ -211,12 +211,13 @@ nav {
     font-size: 2em;
     text-align: center; }
     .search_section h2 .decorated_text_color {
-      color: #5ED7C6; }
+      color: #5ed7c6; }
   .search_section .search_container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; }
+    justify-content: center;
+    margin-top: 30px; }
     .search_section .search_container .prediction_search_container {
       position: relative;
       width: 500px;
@@ -269,56 +270,139 @@ nav {
     margin: 20px 0; }
     .search_section #search_area_section .gif--container {
       width: 24%;
-      height: 180px;
-      margin-bottom: 20px;
-      position: relative;
+      height: 180px; }
+
+.trending_container {
+  background-color: var(--background_secondary);
+  padding: 50px 0; }
+
+.trending_container--heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+  .trending_container--heading h2 {
+    color: var(--text_titles);
+    font-family: Montserrat_bold;
+    font-size: 1.3em;
+    margin-bottom: 5px; }
+  .trending_container--heading p {
+    color: var(--text_color);
+    font-size: 0.9em; }
+
+.trending_slider--container {
+  display: flex;
+  flex-direction: column;
+  align-items: inherit;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 275px;
+  max-height: 300px;
+  margin: 50px 0; }
+  .trending_slider--container .trending_slider--container-content {
+    overflow: hidden; }
+    .trending_slider--container .trending_slider--container-content #trending_slider--content {
+      height: 100%;
       transition: 0.5s all; }
-      .search_section #search_area_section .gif--container .gif--img {
-        width: 100%;
+      .trending_slider--container .trending_slider--container-content #trending_slider--content .slide_content_separator {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         height: 100%;
-        object-fit: cover; }
-      .search_section #search_area_section .gif--container .gif--hover-container {
-        display: none;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-color: rgba(87, 46, 229, 0.6); }
-        .search_section #search_area_section .gif--container .gif--hover-container .gif--content-actions {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
-          position: absolute;
-          top: 10px;
-          right: 10px; }
-          .search_section #search_area_section .gif--container .gif--hover-container .gif--content-actions .gif--content-action-item {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            background-color: #fff;
-            margin: 0 5px; }
-        .search_section #search_area_section .gif--container .gif--hover-container .gif--info {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: center;
-          position: absolute;
-          bottom: 10px;
-          left: 10px;
-          color: #fff; }
-          .search_section #search_area_section .gif--container .gif--hover-container .gif--info .gif--info-subtitle {
-            font-size: .8rem;
-            margin-bottom: 3px; }
-          .search_section #search_area_section .gif--container .gif--hover-container .gif--info .gif--info-title {
-            font-family: Montserrat_bold; }
-      .search_section #search_area_section .gif--container:hover .gif--hover-container {
-        display: block; }
+        float: left;
+        width: 357px; }
+        .trending_slider--container .trending_slider--container-content #trending_slider--content .slide_content_separator .gif--container {
+          margin: 0;
+          width: 375px;
+          height: 100%; }
+  .trending_slider--container .arrow_button {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--text_titles);
+    color: var(--text_titles);
+    cursor: pointer;
+    transition: 0.5s all; }
+    .trending_slider--container .arrow_button:hover {
+      background-color: var(--text_titles);
+      color: var(--text_color_hover); }
+  .trending_slider--container .arrow_left {
+    left: -60px; }
+  .trending_slider--container .arrow_right {
+    right: -60px; }
+
+.gif--container {
+  margin-bottom: 20px;
+  position: relative;
+  transition: 0.5s all; }
+  .gif--container .gif--img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; }
+  .gif--container .gif--hover-container {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(87, 46, 229, 0.6); }
+    .gif--container .gif--hover-container .gif--content-actions {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 10px;
+      right: 10px; }
+      .gif--container .gif--hover-container .gif--content-actions .gif--content-action-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        opacity: .7;
+        cursor: pointer;
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        background-color: #fff;
+        margin: 0 5px;
+        color: #572EE5;
+        transition: .2s all; }
+        .gif--container .gif--hover-container .gif--content-actions .gif--content-action-item:hover {
+          opacity: 1; }
+    .gif--container .gif--hover-container .gif--info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      color: #fff; }
+      .gif--container .gif--hover-container .gif--info .gif--info-subtitle {
+        font-size: 0.8rem;
+        margin-bottom: 3px; }
+      .gif--container .gif--hover-container .gif--info .gif--info-title {
+        font-family: Montserrat_bold; }
+  .gif--container:hover .gif--hover-container {
+    display: block; }
+
+footer {
+  height: 116px; }
+  footer .center_footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    color: var(--text_color); }
 
 body {
   font-family: Montserrat_regular;
