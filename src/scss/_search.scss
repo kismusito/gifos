@@ -76,31 +76,44 @@
         }
     }
 
-    #searched_gifs_section--title {
-        margin-top: 80px;
-    }
-
-    #search_area_section {
-        @include custom_center(row, center, space-between);
-        flex-wrap: wrap;
+    .searched_gifs_section {
         width: 100%;
-        padding: 10px;
-        margin: 20px 0;
 
-        .gif--container {
-            width: 24%;
-            height: 180px;
+
+        #searched_gifs_section--title {
+            margin-top: 80px;
+        }
+    
+        #search_area_section {
+            @include custom_center(row, center, space-between);
+            flex-wrap: wrap;
+            width: 100%;
+            padding: 10px;
+            margin: 20px 0;
+    
+            .gif--container {
+                width: 24%;
+                height: 180px;
+            }
+        }
+
+        #search_area_actions {
+            @include custom_center(column, center, center);
+            width: 100%;
+        }
+    
+        #display_info {
+            @include custom_center(column, center, center);
+            width: 100%;
+            
+            .no_found_gifs_text {
+                margin-top: 15px;
+                font-family: $bold;
+                font-size: 1.3em;
+                color: $color_text_variant;
+            }
         }
     }
 
-    #display_info {
-        @include custom_center(column, center, center);
-
-        .no_found_gifs_text {
-            margin-top: 15px;
-            font-family: $bold;
-            font-size: 1.3em;
-            color: $color_text_variant;
-        }
-    }
+    
 }

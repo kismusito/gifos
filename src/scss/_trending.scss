@@ -61,16 +61,15 @@
             height: 100%;
             transition: 0.5s all;
 
-            .slide_content_separator {
-                @include custom_center(column, center, center);
-                height: 100%;
+            .gif--container {
+                padding: 0 10px;
                 float: left;
-                width: 357px;
+                margin: 0;
+                width: 375px;
+                height: 100%;
 
-                .gif--container {
-                    margin: 0;
-                    width: 375px;
-                    height: 100%;
+                .gif--hover-container {
+                    width: 95%;
                 }
             }
         }

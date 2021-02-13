@@ -29,15 +29,17 @@
             <header>
                 <nav>
                     <div class="custom_navbar">
-                        <div class="custom_logo_desing">
-                            <figure></figure>
-                        </div>
+                        <a href="index.html">
+                            <div class="custom_logo_desing">
+                                <figure></figure>
+                            </div>
+                        </a>
                         <ul class="desktop_menu">
                             <li
                                 class="menu_item"
                                 id="change_theme_trigger"
                             ></li>
-                            <li class="menu_item"><a href="#">FAVORITOS</a></li>
+                            <li class="menu_item"><a href="favorites.html">FAVORITOS</a></li>
                             <li class="menu_item"><a href="#">MIS GIFOS</a></li>
                             <li class="menu_item">
                                 <div class="custom_add_circle">
@@ -48,46 +50,44 @@
                     </div>
                 </nav>
             </header>
-
-            <section class="search_section">
-                <h2>
-                    Inspírate, busca, guarda, y crea <br & />
-                    los mejores
-                    <span class="decorated_text_color">GIFOS</span>
-                </h2>
-
-                <div class="search_container">
-                    <img
-                        src="../assets/img/ilustra_header.svg"
-                        alt="search input illustration"
-                    />
-                    <div class="prediction_search_container">
-                        <input
-                            type="text"
-                            name="user_prediction"
-                            id="user_prediction"
-                            placeholder="Busca GIFOS y más"
-                        />
-                        <div id="loader_elements"></div>
-
-                        <ul id="predictions_area_section"></ul>
-                    </div>
-                </div>
-
-                <div class="trending_searchs--container">
-                    <h3>Trending</h3>
-                    <div id="trending_searchs"></div>
-                </div>
-
-                <div class="searched_gifs_section">
-                    <div id="searched_gifs_section--title"></div>
-                    <div id="search_area_section">
-                        
-                    </div>
-                    
-                </div>
-            </section>
         </div>
+
+        <section class="container search_section">
+            <h2>
+                Inspírate, busca, guarda, y crea <br & />
+                los mejores
+                <span class="decorated_text_color">GIFOS</span>
+            </h2>
+
+            <div class="search_container">
+                <img
+                    src="../assets/img/ilustra_header.svg"
+                    alt="search input illustration"
+                />
+                <div class="prediction_search_container">
+                    <input
+                        type="text"
+                        name="user_prediction"
+                        id="user_prediction"
+                        placeholder="Busca GIFOS y más"
+                    />
+                    <div id="loader_elements"></div>
+
+                    <ul id="predictions_area_section"></ul>
+                </div>
+            </div>
+
+            <div class="trending_searchs--container">
+                <h3>Trending</h3>
+                <div id="trending_searchs"></div>
+            </div>
+
+            <div class="searched_gifs_section">
+                <div id="searched_gifs_section--title"></div>
+                <div id="search_area_section"></div>
+                <div id="search_area_actions"></div>
+            </div>
+        </section>
 
         <section class="trending_container">
             <div class="container">

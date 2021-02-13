@@ -10,13 +10,14 @@ function getByID(_id) {
     return document.getElementById(_id);
 }
 
-async function getSearchedWord(element) {
+async function getSearchedWord(element, start = 0, reload = true) {
     const selectedQuery =
         typeof element == "string"
             ? element
             : element.getAttribute("area-selected");
     const getContainerPredictions = getByID("predictions_area_section");
     const getGifsContainer = getByID("search_area_section");
+    const getGifsContainerActions = getByID("search_area_actions");
     const getTitleSearched = getByID("searched_gifs_section--title");
     const searchInput = getByID("user_prediction");
     const getTrendingContainer = document.querySelector(
@@ -24,22 +25,49 @@ async function getSearchedWord(element) {
     );
 
     try {
-        const gifs = await getGifs(`gifs/search?q=${selectedQuery}&limit=12&`);
+        const gifs = await getGifs(
+            `gifs/search?q=${selectedQuery}&limit=12&offset=${start}&`
+        );
+
         const gifData = gifs.data;
         if (gifData.length > 0) {
             getContainerPredictions.innerHTML = "";
             getTrendingContainer.style.display = "none";
-            getGifsContainer.innerHTML = "";
+            if (reload) {
+                getGifsContainer.innerHTML = "";
+            }
+            getGifsContainerActions.innerText = "";
+
             searchInput.value = "";
 
+            const createButton = document.createElement("button");
+            createButton.innerText = "Ver más";
+            createButton.setAttribute(
+                "data-pagination-offset",
+                start == 0
+                    ? 12
+                    : gifs.pagination.offset + gifs.pagination.count + 1
+            );
+            createButton.className = "btn_purple";
             getTitleSearched.innerHTML = `<h2>${selectedQuery}</h2>`;
 
             for (let i in gifData) {
-                getGifsContainer.innerHTML += gifLayout(gifData[i]);
+                getGifsContainer.appendChild(gifLayout(gifData[i] , getGifsContainer));
             }
+
+            getGifsContainerActions.appendChild(createButton);
+
+            createButton.addEventListener("click", (e) => {
+                const getOffset =
+                    e.target.attributes["data-pagination-offset"].value;
+                if (getOffset) {
+                    getSearchedWord(selectedQuery, getOffset, false);
+                }
+            });
         } else {
             getTrendingContainer.style.display = "block";
-            getTitleSearched.innerHTML = `<h2>Lorem Ipsum</h2>`;
+            getGifsContainerActions.innerText = "";
+            getTitleSearched.innerHTML = `<h2>Oops...</h2>`;
             getGifsContainer.innerHTML = `
                 <div id="display_info">
                     <img src="../assets/img/icon-busqueda-sin-resultado.svg" alt="busqueda sin resultado" />

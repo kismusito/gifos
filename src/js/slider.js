@@ -54,11 +54,9 @@ function getTranslateTotal(
     const totalItemWith = getParentContainer.scrollWidth / 3;
 
     slides.data.forEach((slide) => {
-        const createElement = document.createElement("div");
-        createElement.className = "slide_content_separator";
-        createElement.style.width = totalItemWith + "px";
-        createElement.innerHTML += gifLayout(slide);
-        getContainerSlider.appendChild(createElement);
+        const createdElement = gifLayout(slide, getContainerSlider);
+        createdElement.style.width = totalItemWith + "px";
+        getContainerSlider.appendChild(createdElement);
     });
 
     const itemWidth = getContainerSlider.children[0].scrollWidth;
@@ -74,7 +72,7 @@ function getTranslateTotal(
     );
 
     const maxDirectionTranslate = totalWidth - itemWidth * 2;
-    
+
     getPrevButton.addEventListener("click", () => {
         const totalTranslate = getTranslateTotal(
             getContainerSlider,

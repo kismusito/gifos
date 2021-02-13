@@ -17,3 +17,21 @@ body {
     height: 5px;
     background-color: $separator_top_color;
 }
+
+.btn_purple {
+    border: 1px solid $color_titles;
+    background-color: transparent;
+    border-radius: 25px;
+    width: 100px;
+    height: 45px;
+    outline: none;
+    color: $color_titles;
+    transition: .5s all;
+    font-family: $bold;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $color_titles;
+        color: $color_hover_text;
+    }
+}

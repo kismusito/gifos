@@ -1,4 +1,5 @@
 .gif--container {
+    @include custom_center(column, center, center);
     margin-bottom: 20px;
     position: relative;
     transition: 0.5s all;
@@ -15,7 +16,6 @@
         height: 100%;
         position: absolute;
         top: 0;
-        left: 0;
         background-color: $hover_gif_color;
 
         .gif--content-actions {

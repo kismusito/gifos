@@ -28,9 +28,7 @@ export const getTrendingGifs = async (totalSlides = 8) => {
 };
 
 export const getTrendingSearchesGifs = async () => {
-    const request = await fetch(
-        getCompleteURL(`trending/searches?limit=5&`)
-    );
+    const request = await fetch(getCompleteURL(`trending/searches?limit=5&`));
     const convertRequest = await request.json();
 
     return convertRequest;

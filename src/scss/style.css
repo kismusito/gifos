@@ -160,7 +160,7 @@ nav {
       background-repeat: no-repeat; }
     nav .custom_navbar .desktop_menu {
       display: grid;
-      grid-template-columns: repeat(4, auto);
+      grid-template-columns: repeat(5, auto);
       justify-content: center;
       grid-gap: 30px;
       height: inherit;
@@ -260,30 +260,39 @@ nav {
         color: #9cafc3; }
         .search_section .search_container .prediction_search_container .predictions_area_item:hover {
           background-color: #f3f3f3; }
-  .search_section #searched_gifs_section--title {
-    margin-top: 80px; }
-  .search_section #search_area_section {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    width: 100%;
-    padding: 10px;
-    margin: 20px 0; }
-    .search_section #search_area_section .gif--container {
-      width: 24%;
-      height: 180px; }
-  .search_section #display_info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; }
-    .search_section #display_info .no_found_gifs_text {
-      margin-top: 15px;
-      font-family: Montserrat_bold;
-      font-size: 1.3em;
-      color: #5ed7c6; }
+  .search_section .searched_gifs_section {
+    width: 100%; }
+    .search_section .searched_gifs_section #searched_gifs_section--title {
+      margin-top: 80px; }
+    .search_section .searched_gifs_section #search_area_section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width: 100%;
+      padding: 10px;
+      margin: 20px 0; }
+      .search_section .searched_gifs_section #search_area_section .gif--container {
+        width: 24%;
+        height: 180px; }
+    .search_section .searched_gifs_section #search_area_actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%; }
+    .search_section .searched_gifs_section #display_info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%; }
+      .search_section .searched_gifs_section #display_info .no_found_gifs_text {
+        margin-top: 15px;
+        font-family: Montserrat_bold;
+        font-size: 1.3em;
+        color: #5ed7c6; }
 
 .trending_container {
   background-color: var(--background_secondary);
@@ -336,18 +345,14 @@ nav {
     .trending_slider--container .trending_slider--container-content #trending_slider--content {
       height: 100%;
       transition: 0.5s all; }
-      .trending_slider--container .trending_slider--container-content #trending_slider--content .slide_content_separator {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
+      .trending_slider--container .trending_slider--container-content #trending_slider--content .gif--container {
+        padding: 0 10px;
         float: left;
-        width: 357px; }
-        .trending_slider--container .trending_slider--container-content #trending_slider--content .slide_content_separator .gif--container {
-          margin: 0;
-          width: 375px;
-          height: 100%; }
+        margin: 0;
+        width: 375px;
+        height: 100%; }
+        .trending_slider--container .trending_slider--container-content #trending_slider--content .gif--container .gif--hover-container {
+          width: 95%; }
   .trending_slider--container .arrow_button {
     position: absolute;
     display: flex;
@@ -369,6 +374,10 @@ nav {
     right: -60px; }
 
 .gif--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
   position: relative;
   transition: 0.5s all; }
@@ -382,7 +391,6 @@ nav {
     height: 100%;
     position: absolute;
     top: 0;
-    left: 0;
     background-color: rgba(87, 46, 229, 0.6); }
     .gif--container .gif--hover-container .gif--content-actions {
       display: flex;
@@ -448,5 +456,20 @@ body {
   width: 100%;
   height: 5px;
   background-color: var(--separator_top_color); }
+
+.btn_purple {
+  border: 1px solid var(--text_titles);
+  background-color: transparent;
+  border-radius: 25px;
+  width: 100px;
+  height: 45px;
+  outline: none;
+  color: var(--text_titles);
+  transition: .5s all;
+  font-family: Montserrat_bold;
+  cursor: pointer; }
+  .btn_purple:hover {
+    background-color: var(--text_titles);
+    color: var(--text_color_hover); }
 
 /*# sourceMappingURL=style.css.map */
