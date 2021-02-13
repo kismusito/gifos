@@ -19,6 +19,33 @@
     }
 }
 
+.trending_searchs--container {
+    margin-top: 70px;
+    text-align: center;
+
+    h3 {
+        color: $color_titles;
+        font-family: $bold;
+        font-size: 1.3em;
+    }
+
+    #trending_searchs {
+        margin-top: 10px;
+
+        .trending_item_searched {
+            margin-right: 6px;
+            color: $color_titles;
+            text-transform: capitalize;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+
+        .trending_item_searched:last-child {
+            margin: 0;
+        }
+    }
+}
+
 .trending_slider--container {
     @include custom_center(column, center, inherit);
     position: relative;

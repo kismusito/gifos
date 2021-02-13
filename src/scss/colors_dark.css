@@ -1,6 +1,7 @@
 :root {
     --background_color: #37383C;
     --text_titles: #fff;
+    --separator_top_color: #000;
     --text_color: #fff;
     --text_color_hover: #333;
     --background_secondary: #222326;

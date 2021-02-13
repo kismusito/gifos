@@ -5,22 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Gifos</title>
 
-        <!-- Load Css Files -->
-
-        <script>
-            const actualTheme = localStorage.getItem("theme");
-            var link = document.createElement("link");
-            link.rel = "stylesheet";
-            link.type = "text/css";
-            if (actualTheme) {
-                link.href = "scss/colors_" + actualTheme + ".css";
-            } else {
-                link.href = "scss/colors_light.css";
-            }
-
-            document.getElementsByTagName("HEAD")[0].appendChild(link);
-        </script>
-
         <link rel="stylesheet" href="scss/style.css" />
 
         <!-- Import Material UI Icons -->
@@ -35,11 +19,12 @@
             crossorigin="anonymous"
         ></script>
 
-
         <!-- Load main chunk JS -->
         <script defer type="module" src="js/index.js"></script>
     </head>
     <body>
+        <div class="separator_page"></div>
+
         <div class="container">
             <header>
                 <nav>
@@ -48,7 +33,10 @@
                             <figure></figure>
                         </div>
                         <ul class="desktop_menu">
-                            <li class="menu_item">MODO NOCTURNO</li>
+                            <li
+                                class="menu_item"
+                                id="change_theme_trigger"
+                            ></li>
                             <li class="menu_item"><a href="#">FAVORITOS</a></li>
                             <li class="menu_item"><a href="#">MIS GIFOS</a></li>
                             <li class="menu_item">
@@ -86,12 +74,18 @@
                     </div>
                 </div>
 
-                <div id="trending_searchs--container">
+                <div class="trending_searchs--container">
                     <h3>Trending</h3>
                     <div id="trending_searchs"></div>
                 </div>
 
-                <div id="search_area_section"></div>
+                <div class="searched_gifs_section">
+                    <div id="searched_gifs_section--title"></div>
+                    <div id="search_area_section">
+                        
+                    </div>
+                    
+                </div>
             </section>
         </div>
 
@@ -103,7 +97,10 @@
                 </div>
 
                 <div class="trending_slider--container">
-                    <div class="arrow_button arrow_left" id="trending_slider--prev_button">
+                    <div
+                        class="arrow_button arrow_left"
+                        id="trending_slider--prev_button"
+                    >
                         <span class="material-icons">
                             keyboard_arrow_left
                         </span>
@@ -111,7 +108,10 @@
                     <div class="trending_slider--container-content">
                         <div id="trending_slider--content"></div>
                     </div>
-                    <div class="arrow_button arrow_right" id="trending_slider--next_button">
+                    <div
+                        class="arrow_button arrow_right"
+                        id="trending_slider--next_button"
+                    >
                         <span class="material-icons">
                             keyboard_arrow_right
                         </span>
@@ -122,9 +122,11 @@
 
         <footer>
             <div class="container center_footer">
-                <div>Compartir en: </div>
+                <div>Compartir en:</div>
                 <div>&copy; GIFOS - Juan Araque 2021 All Rights Reserved.</div>
             </div>
         </footer>
+
+        <div class="separator_page"></div>
     </body>
 </html>

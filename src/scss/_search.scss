@@ -76,6 +76,10 @@
         }
     }
 
+    #searched_gifs_section--title {
+        margin-top: 80px;
+    }
+
     #search_area_section {
         @include custom_center(row, center, space-between);
         flex-wrap: wrap;
@@ -86,6 +90,17 @@
         .gif--container {
             width: 24%;
             height: 180px;
+        }
+    }
+
+    #display_info {
+        @include custom_center(column, center, center);
+
+        .no_found_gifs_text {
+            margin-top: 15px;
+            font-family: $bold;
+            font-size: 1.3em;
+            color: $color_text_variant;
         }
     }
 }
