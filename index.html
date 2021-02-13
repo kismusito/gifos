@@ -32,7 +32,7 @@
             <header>
                 <nav>
                     <div class="custom_navbar">
-                        <a href="index.html">
+                        <a href="/">
                             <div class="custom_logo_desing">
                                 <figure></figure>
                             </div>
@@ -45,54 +45,56 @@
                             <li class="menu_item">
                                 <a href="favorites.html">FAVORITOS</a>
                             </li>
-                            <li class="menu_item"><a href="#">MIS GIFOS</a></li>
+                            <li class="menu_item">
+                                <a href="myGifos.html">MIS GIFOS</a>
+                            </li>
                             <li class="menu_item">
                                 <div class="custom_add_circle">
-                                    <a href="#">+</a>
+                                    <a href="createGifo.html">+</a>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </nav>
             </header>
-        </div>
 
-        <section class="container search_section">
-            <h2>
-                Inspírate, busca, guarda, y crea <br & />
-                los mejores
-                <span class="decorated_text_color">GIFOS</span>
-            </h2>
+            <section class="search_section">
+                <h2>
+                    Inspírate, busca, guarda, y crea <br & />
+                    los mejores
+                    <span class="decorated_text_color">GIFOS</span>
+                </h2>
 
-            <div class="search_container">
-                <img
-                    src="../assets/img/ilustra_header.svg"
-                    alt="search input illustration"
-                />
-                <div class="prediction_search_container">
-                    <input
-                        type="text"
-                        name="user_prediction"
-                        id="user_prediction"
-                        placeholder="Busca GIFOS y más"
+                <div class="search_container">
+                    <img
+                        src="../assets/img/ilustra_header.svg"
+                        alt="search input illustration"
                     />
-                    <div id="loader_elements"></div>
+                    <div class="prediction_search_container">
+                        <input
+                            type="text"
+                            name="user_prediction"
+                            id="user_prediction"
+                            placeholder="Busca GIFOS y más"
+                        />
+                        <div id="loader_elements"></div>
 
-                    <ul id="predictions_area_section"></ul>
+                        <ul id="predictions_area_section"></ul>
+                    </div>
                 </div>
-            </div>
 
-            <div class="trending_searchs--container">
-                <h3>Trending</h3>
-                <div id="trending_searchs"></div>
-            </div>
+                <div class="trending_searchs--container">
+                    <h3>Trending</h3>
+                    <div id="trending_searchs"></div>
+                </div>
 
-            <div class="searched_gifs_section">
-                <div id="searched_gifs_section--title"></div>
-                <div id="search_area_section"></div>
-                <div id="search_area_actions"></div>
-            </div>
-        </section>
+                <div class="searched_gifs_section">
+                    <div id="searched_gifs_section--title"></div>
+                    <div id="search_area_section"></div>
+                    <div id="search_area_actions"></div>
+                </div>
+            </section>
+        </div>
 
         <section class="trending_container">
             <div class="container">

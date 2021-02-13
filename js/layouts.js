@@ -4,12 +4,12 @@ const favoriteGif = (event, item) => {
         if (favorites) {
             const favoritesParse = JSON.parse(favorites);
             const alreadyFavorite = favoritesParse.some(
-                (gifID) => gifID == item.id
+                (gif) => gif.id == item.id
             );
             if (!alreadyFavorite) {
                 localStorage.setItem(
                     "local-favorites",
-                    JSON.stringify([...favoritesParse, item.id])
+                    JSON.stringify([...favoritesParse, item])
                 );
                 if (event.target.className == "gif--content-action-item") {
                     event.target.innerHTML = `<i class="fas fa-heart"></i>`;
@@ -20,7 +20,7 @@ const favoriteGif = (event, item) => {
                 localStorage.setItem(
                     "local-favorites",
                     JSON.stringify(
-                        favoritesParse.filter((gifID) => gifID != item.id)
+                        favoritesParse.filter((gif) => gif.id != item.id)
                     )
                 );
                 if (event.target.className == "gif--content-action-item") {
@@ -30,7 +30,7 @@ const favoriteGif = (event, item) => {
                 }
             }
         } else {
-            localStorage.setItem("local-favorites", JSON.stringify([item.id]));
+            localStorage.setItem("local-favorites", JSON.stringify([item]));
             if (event.target.className == "gif--content-action-item") {
                 event.target.innerHTML = `<i class="fas fa-heart"></i>`;
             } else {
@@ -83,7 +83,7 @@ export const gifLayout = (data , parent) => {
         try {
             const favoritesParse = JSON.parse(favorites);
             if (favoritesParse) {
-                isFavorite = favoritesParse.some((gifID) => gifID == data.id);
+                isFavorite = favoritesParse.some((gif) => gif.id == data.id);
             }
         } catch (error) {
             localStorage.removeItem("local-favorites");
