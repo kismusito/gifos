@@ -1,0 +1,83 @@
+#fullScreen_gif--shadow {
+    @include custom_center(column, center, center);
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    .fullScreen_gif--container {
+        @include custom_center(column, center, center);
+        position: relative;
+        width: 700px;
+        padding: 20px;
+        background-color: $background-modal;
+        border-radius: 10px;
+        min-height: 400px;
+
+        #fullScreen_gif--icon_close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: $color_titles;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+
+        #fullScreen_gif--gif_content {
+            width: 85%;
+
+            img {
+                width: 100%;
+                height: 380px;
+                object-fit: cover;
+            }
+
+            .gif_info_fullscreen {
+                @include custom_center(row, center, space-between);
+                margin-top: 20px;
+                color: $color_text;
+
+                .gif--info {
+                    .gif--info-title {
+                        margin-top: 5px;
+                        font-family: $bold;
+                    }
+                }
+
+                .gif_fullScreen_actions {
+                    @include custom_center(row, center, space-between);
+
+                    .gif--content-action-item {
+                        @include custom_center(column, center, center);
+                        cursor: pointer;
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 6px;
+                        border: 1px solid $color_titles;
+                        margin: 0 5px;
+                        color: $color_titles;
+                        font-size: 0.9em;
+                    }
+                }
+            }
+        }
+
+        #data_button_actions {
+            position: absolute;
+            width: 100%;
+
+            .pre_button_modal {
+                position: absolute;
+                left: 3%;
+            }
+
+            .next_button_modal {
+                position: absolute;
+                right: 3%;
+            }
+        }
+    }
+}

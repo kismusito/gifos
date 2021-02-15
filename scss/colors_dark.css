@@ -5,6 +5,7 @@
     --text_color: #fff;
     --text_color_hover: #333;
     --background_secondary: #222326;
+    --background_modal: #222326;
     --main_logo_desktop: url("../../assets/img/Logo-modo-noc.svg");
     --main_logo_mobile: url("../../assets/img/logo-mobile-modo-noct.svg");
 }

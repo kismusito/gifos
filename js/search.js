@@ -10,6 +10,8 @@ function getByID(_id) {
     return document.getElementById(_id);
 }
 
+let allGifs = [];
+
 async function getSearchedWord(element, start = 0, reload = true) {
     const selectedQuery =
         typeof element == "string"
@@ -31,11 +33,19 @@ async function getSearchedWord(element, start = 0, reload = true) {
 
         const gifData = gifs.data;
         if (gifData.length > 0) {
-            getContainerPredictions.innerHTML = "";
-            getTrendingContainer.style.display = "none";
             if (reload) {
                 getGifsContainer.innerHTML = "";
+                allGifs = [];
+                localStorage.removeItem("actual_gifs_searched");
             }
+
+            allGifs = [...gifData, ...allGifs];
+
+            localStorage.setItem("actual_gifs_searched", JSON.stringify(allGifs));
+
+            getContainerPredictions.innerHTML = "";
+            getTrendingContainer.style.display = "none";
+
             getGifsContainerActions.innerText = "";
 
             searchInput.value = "";
@@ -52,7 +62,9 @@ async function getSearchedWord(element, start = 0, reload = true) {
             getTitleSearched.innerHTML = `<h2>${selectedQuery}</h2>`;
 
             for (let i in gifData) {
-                getGifsContainer.appendChild(gifLayout(gifData[i] , getGifsContainer));
+                getGifsContainer.appendChild(
+                    gifLayout(gifData[i], getGifsContainer , "search")
+                );
             }
 
             getGifsContainerActions.appendChild(createButton);

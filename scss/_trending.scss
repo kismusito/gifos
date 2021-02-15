@@ -75,22 +75,6 @@
         }
     }
 
-    .arrow_button {
-        position: absolute;
-        @include custom_center(column, center, center);
-        width: 40px;
-        height: 40px;
-        border: 1px solid $color_titles;
-        color: $color_titles;
-        cursor: pointer;
-        transition: 0.5s all;
-
-        &:hover {
-            background-color: $color_titles;
-            color: $color_hover_text;
-        }
-    }
-
     .arrow_left {
         left: -60px;
     }

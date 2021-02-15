@@ -51,16 +51,27 @@ function getTranslateTotal(
         ".trending_slider--container-content"
     );
 
+    localStorage.removeItem("actual_gifs_slider");
+
     if (getParentContainer) {
         const slides = await getTrendingGifs();
+        const totalToDivide = window.innerWidth > 700 ? 3 : 1;
+        const totalItemWith = getParentContainer.scrollWidth / totalToDivide;
 
-        const totalItemWith = getParentContainer.scrollWidth / 3;
+        let totalGifs = [];
 
         slides.data.forEach((slide) => {
-            const createdElement = gifLayout(slide, getContainerSlider);
+            const createdElement = gifLayout(
+                slide,
+                getContainerSlider,
+                "slider"
+            );
             createdElement.style.width = totalItemWith + "px";
             getContainerSlider.appendChild(createdElement);
+            totalGifs = [...totalGifs, slide];
         });
+
+        localStorage.setItem("actual_gifs_slider", JSON.stringify(totalGifs));
 
         const itemWidth = getContainerSlider.children[0].scrollWidth;
 
