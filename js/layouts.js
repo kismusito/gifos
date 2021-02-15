@@ -124,8 +124,6 @@ const sliderFullScreen = (data, item) => {
     let prev;
     let index;
 
-    console.log(data);
-
     if (data[searchedItem]) {
         if (data[searchedItem - 1]) {
             prev = searchedItem - 1;
