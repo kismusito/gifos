@@ -13,13 +13,14 @@ const noFavoritesFound = (_) => {
             </div>`;
 };
 
-(() => {
+export const favoriteGifs = _ => {
     const getFavoriteGifs = localStorage.getItem("local-favorites");
     const favoriteContainer = document.getElementById("favorite_gifs");
     if (favoriteContainer) {
         if (getFavoriteGifs) {
             const gifs = JSON.parse(getFavoriteGifs);
             if (gifs) {
+                favoriteContainer.innerHTML = "";
                 if (gifs.length > 0) {
                     gifs.map((gif) => {
                         favoriteContainer.appendChild(
@@ -36,4 +37,4 @@ const noFavoritesFound = (_) => {
             favoriteContainer.innerHTML = noFavoritesFound();
         }
     }
-})();
+}

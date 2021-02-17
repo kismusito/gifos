@@ -1,3 +1,5 @@
+import { favoriteGifs } from './favorite_gifs.js'
+
 const favoriteGif = (event, item) => {
     try {
         const favorites = localStorage.getItem("local-favorites");
@@ -9,7 +11,7 @@ const favoriteGif = (event, item) => {
             if (!alreadyFavorite) {
                 localStorage.setItem(
                     "local-favorites",
-                    JSON.stringify([...favoritesParse, item])
+                    JSON.stringify([item , ...favoritesParse])
                 );
                 if (event.target.className == "gif--content-action-item") {
                     event.target.innerHTML = `<i class="fas fa-heart"></i>`;
@@ -29,6 +31,8 @@ const favoriteGif = (event, item) => {
                     event.target.parentElement.innerHTML = `<i class="far fa-heart"></i>`;
                 }
             }
+
+            favoriteGifs()
         } else {
             localStorage.setItem("local-favorites", JSON.stringify([item]));
             if (event.target.className == "gif--content-action-item") {
@@ -288,3 +292,8 @@ export const gifLayout = (data, parent, type = "search") => {
 
     return createGifContainer;
 };
+
+if(window.location.pathname == "/favorites" || window.location.pathname == "/favorites.html") {
+    console.log("Holita")
+    favoriteGifs();
+}

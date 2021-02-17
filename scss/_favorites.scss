@@ -14,23 +14,23 @@
     @include custom_center(row , center , flex-start);
     flex-wrap: wrap;
 
-    .no_found_favorite {
-        width: 100%;
-        margin: 50px 0;
-        @include custom_center(column , center , center);
-
-        p {
-            color: $color_text_variant;
-            font-family: $bold;
-            text-align: center;
-            font-size: 1.5em;
-            margin-top: 10px;
-        }
-    }
-
     .gif--container {
         width: 24%;
         height: 180px;
         margin-right: 1%;
+    }
+}
+
+.no_found_favorite {
+    width: 100%;
+    margin: 50px 0;
+    @include custom_center(column , center , center);
+
+    p {
+        color: $color_text_variant;
+        font-family: $bold;
+        text-align: center;
+        font-size: 1.5em;
+        margin-top: 10px;
     }
 }
