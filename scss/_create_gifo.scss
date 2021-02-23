@@ -1,0 +1,156 @@
+.main_container_create_gifo {
+    margin-top: 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .absolute_element--camera {
+        position: absolute;
+        left: 0;
+        width: 200px;
+        display: flex;
+        align-items: center;
+
+        figure {
+            background-image: $camera_icon;
+            background-size: contain;
+            width: 150px;
+            height: 200px;
+            background-repeat: no-repeat;
+        }
+
+        .shape_light_camera {
+            position: absolute;
+            right: -30px;
+        }
+    }
+
+    .container_create_gifo {
+        position: relative;
+        margin: 0 auto;
+        width: 688px;
+        height: 390px;
+        border: 1px solid $color_titles;
+        margin-bottom: 10px;
+        padding: 20px;
+
+        .gifos_content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            .shape {
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                border-color: $color_text_variant;
+                border-style: solid;
+            }
+    
+            .shape_top_left {
+                top: 0;
+                left: 0;
+                border-top-width: 2px;
+                border-left-width: 2px;
+            }
+
+            .shape_top_right {
+                top: 0;
+                right: 0;
+                border-top-width: 2px;
+                border-right-width: 2px;
+            }
+
+            .shape_bottom_left {
+                bottom: 0;
+                left: 0;
+                border-bottom-width: 2px;
+                border-left-width: 2px;
+            }
+
+            .shape_bottom_right {
+                bottom: 0;
+                right: 0;
+                border-bottom-width: 2px;
+                border-right-width: 2px;
+            }
+
+            #gifos_content--content {
+                text-align: center;
+                max-width: 480px;
+
+                h2 {
+                    color: $color_titles;
+                    font-family: $bold;
+                    font-size: 1.5em;
+
+                    .decorated_text_color {
+                        color: $color_text_variant;
+                    }
+                }
+
+                p {
+                    margin-top: 15px;
+                    line-height: 1.8em;
+                    color: $color_text;
+                }
+            }
+
+            video {
+                max-width: 480px;
+            }
+        }
+
+        
+    }
+
+    .separator_steps {
+        background-color: $color_titles;
+        width: 80%;
+        height: 10px;
+        border-radius: 10px;
+        margin: 10px auto;
+    }
+
+    #steps {
+        display: flex;
+        margin: 10px 0;
+
+        .step_circle {
+            width: 35px;
+            margin: 0 5px;
+            height: 35px;
+            border: 1px solid $color_titles;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $color_titles;
+            font-family: $bold;
+        }
+
+        .active {
+            background-color: $color_titles;
+            color: $color_hover_text;
+        }
+    }
+
+    .absolute_element--movie {
+        position: absolute;
+        right: 0;
+        bottom: 20%;
+
+        figure {
+            background-image: $movie_icon;
+            background-size: contain;
+            width: 200px;
+            height: 100px;
+            background-repeat: no-repeat;
+        }
+    }
+}

@@ -8,4 +8,6 @@
     --background_modal: #222326;
     --main_logo_desktop: url("../../assets/img/Logo-modo-noc.svg");
     --main_logo_mobile: url("../../assets/img/logo-mobile-modo-noct.svg");
+    --camera_icon: url('../../assets/img/camara-modo-noc.svg');
+    --movie_icon: url('../../assets/img/pelicula-modo-noc.svg');
 }

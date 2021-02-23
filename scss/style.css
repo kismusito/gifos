@@ -456,6 +456,118 @@ nav {
     font-size: 1.5em;
     margin-top: 10px; }
 
+.main_container_create_gifo {
+  margin-top: 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .main_container_create_gifo .absolute_element--camera {
+    position: absolute;
+    left: 0;
+    width: 200px;
+    display: flex;
+    align-items: center; }
+    .main_container_create_gifo .absolute_element--camera figure {
+      background-image: var(--camera_icon);
+      background-size: contain;
+      width: 150px;
+      height: 200px;
+      background-repeat: no-repeat; }
+    .main_container_create_gifo .absolute_element--camera .shape_light_camera {
+      position: absolute;
+      right: -30px; }
+  .main_container_create_gifo .container_create_gifo {
+    position: relative;
+    margin: 0 auto;
+    width: 688px;
+    height: 390px;
+    border: 1px solid var(--text_titles);
+    margin-bottom: 10px;
+    padding: 20px; }
+    .main_container_create_gifo .container_create_gifo .gifos_content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column; }
+      .main_container_create_gifo .container_create_gifo .gifos_content .shape {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-color: #5ed7c6;
+        border-style: solid; }
+      .main_container_create_gifo .container_create_gifo .gifos_content .shape_top_left {
+        top: 0;
+        left: 0;
+        border-top-width: 2px;
+        border-left-width: 2px; }
+      .main_container_create_gifo .container_create_gifo .gifos_content .shape_top_right {
+        top: 0;
+        right: 0;
+        border-top-width: 2px;
+        border-right-width: 2px; }
+      .main_container_create_gifo .container_create_gifo .gifos_content .shape_bottom_left {
+        bottom: 0;
+        left: 0;
+        border-bottom-width: 2px;
+        border-left-width: 2px; }
+      .main_container_create_gifo .container_create_gifo .gifos_content .shape_bottom_right {
+        bottom: 0;
+        right: 0;
+        border-bottom-width: 2px;
+        border-right-width: 2px; }
+      .main_container_create_gifo .container_create_gifo .gifos_content #gifos_content--content {
+        text-align: center;
+        max-width: 480px; }
+        .main_container_create_gifo .container_create_gifo .gifos_content #gifos_content--content h2 {
+          color: var(--text_titles);
+          font-family: Montserrat_bold;
+          font-size: 1.5em; }
+          .main_container_create_gifo .container_create_gifo .gifos_content #gifos_content--content h2 .decorated_text_color {
+            color: #5ed7c6; }
+        .main_container_create_gifo .container_create_gifo .gifos_content #gifos_content--content p {
+          margin-top: 15px;
+          line-height: 1.8em;
+          color: var(--text_color); }
+      .main_container_create_gifo .container_create_gifo .gifos_content video {
+        max-width: 480px; }
+  .main_container_create_gifo .separator_steps {
+    background-color: var(--text_titles);
+    width: 80%;
+    height: 10px;
+    border-radius: 10px;
+    margin: 10px auto; }
+  .main_container_create_gifo #steps {
+    display: flex;
+    margin: 10px 0; }
+    .main_container_create_gifo #steps .step_circle {
+      width: 35px;
+      margin: 0 5px;
+      height: 35px;
+      border: 1px solid var(--text_titles);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text_titles);
+      font-family: Montserrat_bold; }
+    .main_container_create_gifo #steps .active {
+      background-color: var(--text_titles);
+      color: var(--text_color_hover); }
+  .main_container_create_gifo .absolute_element--movie {
+    position: absolute;
+    right: 0;
+    bottom: 20%; }
+    .main_container_create_gifo .absolute_element--movie figure {
+      background-image: var(--movie_icon);
+      background-size: contain;
+      width: 200px;
+      height: 100px;
+      background-repeat: no-repeat; }
+
 #fullScreen_gif--shadow {
   display: flex;
   flex-direction: column;

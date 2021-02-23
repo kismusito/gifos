@@ -24,6 +24,11 @@
 
         <!-- Load main chunk JS -->
         <script defer type="module" src="js/index.js"></script>
+
+        <!-- Record video -->
+
+        <!-- recommended -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.6.1/RecordRTC.min.js"></script>
     </head>
     <body>
         <div class="separator_page"></div>
@@ -57,6 +62,40 @@
                     </div>
                 </nav>
             </header>
+
+            <div class="main_container_create_gifo">
+                <div class="absolute_element--camera">
+                    <figure></figure>
+                    <img
+                        src="assets/img/element-luz-camara.svg"
+                        class="shape_light_camera"
+                    />
+                </div>
+
+                <div class="container_create_gifo">
+                    <div class="gifos_content">
+                        <div class="shape shape_top_left"></div>
+                        <div class="shape shape_top_right"></div>
+                        <div class="shape shape_bottom_right"></div>
+                        <div class="shape shape_bottom_left"></div>
+                        <div id="gifos_content--content"></div>
+                    </div>
+                </div>
+
+                <div id="steps">
+                    <div id="step_one" class="step_circle">1</div>
+                    <div id="step_two" class="step_circle">2</div>
+                    <div id="step_three" class="step_circle">3</div>
+                </div>
+
+                <div class="separator_steps"></div>
+
+                <button id="button_step" class="btn_purple">Comenzar</button>
+
+                <div class="absolute_element--movie">
+                    <figure></figure>
+                </div>
+            </div>
         </div>
 
         <footer>
