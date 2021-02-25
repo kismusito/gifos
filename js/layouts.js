@@ -1,18 +1,13 @@
-import { favoriteGifs } from './favorite_gifs.js'
+import { favoriteGifs } from "./favorite_gifs.js";
 
 const favoriteGif = (event, item) => {
     try {
         const favorites = localStorage.getItem("local-favorites");
         if (favorites) {
             const favoritesParse = JSON.parse(favorites);
-            const alreadyFavorite = favoritesParse.some(
-                (gif) => gif.id == item.id
-            );
+            const alreadyFavorite = favoritesParse.some((gif) => gif.id == item.id);
             if (!alreadyFavorite) {
-                localStorage.setItem(
-                    "local-favorites",
-                    JSON.stringify([item , ...favoritesParse])
-                );
+                localStorage.setItem("local-favorites", JSON.stringify([item, ...favoritesParse]));
                 if (event.target.className == "gif--content-action-item") {
                     event.target.innerHTML = `<i class="fas fa-heart"></i>`;
                 } else {
@@ -21,9 +16,7 @@ const favoriteGif = (event, item) => {
             } else {
                 localStorage.setItem(
                     "local-favorites",
-                    JSON.stringify(
-                        favoritesParse.filter((gif) => gif.id != item.id)
-                    )
+                    JSON.stringify(favoritesParse.filter((gif) => gif.id != item.id))
                 );
                 if (event.target.className == "gif--content-action-item") {
                     event.target.innerHTML = `<i class="far fa-heart"></i>`;
@@ -32,7 +25,7 @@ const favoriteGif = (event, item) => {
                 }
             }
 
-            favoriteGifs()
+            favoriteGifs();
         } else {
             localStorage.setItem("local-favorites", JSON.stringify([item]));
             if (event.target.className == "gif--content-action-item") {
@@ -43,16 +36,12 @@ const favoriteGif = (event, item) => {
         }
     } catch (error) {
         localStorage.removeItem("local-favorites");
-        console.log(
-            "No se puede cargar la lista de favoritos. Eliminando registros..."
-        );
+        console.log("No se puede cargar la lista de favoritos. Eliminando registros...");
     }
 };
 
 const layoutSliderFull = (item, next, prev, data) => {
-    const getPreviewLayout = document.getElementById(
-        "fullScreen_gif--gif_content"
-    );
+    const getPreviewLayout = document.getElementById("fullScreen_gif--gif_content");
     const getButtonContainer = document.getElementById("data_button_actions");
 
     getPreviewLayout.innerHTML = "";
@@ -165,6 +154,9 @@ const fullScreenGif = (event, item, type = "search") => {
         case "favorite":
             data = JSON.parse(localStorage.getItem("local-favorites"));
             break;
+        case "uploaded":
+            data = JSON.parse(localStorage.getItem("local-uploads"));
+            break;
         default:
             console.log("NO se ha encontrado nada");
             break;
@@ -193,13 +185,7 @@ function creatorElement(tag, className, click, type = "search") {
     return createdElement;
 }
 
-function createActionElement(
-    action,
-    data,
-    iconHTML = "",
-    parentElement = null,
-    type = "search"
-) {
+function createActionElement(action, data, iconHTML = "", parentElement = null, type = "search") {
     const elementAction = creatorElement("div", "gif--content-action-item");
     elementAction.addEventListener("click", (e) => {
         action(e, data, parentElement, type);
@@ -222,24 +208,17 @@ function gifIsFavorite(id) {
             }
         } catch (error) {
             localStorage.removeItem("local-favorites");
-            console.log(
-                "No se puede cargar la lista de favoritos. Eliminando registros..."
-            );
+            console.log("No se puede cargar la lista de favoritos. Eliminando registros...");
         }
     }
 
     return isFavorite;
 }
 
-export const gifLayout = (data, parent, type = "search") => {
+export const gifLayout = (data, parent, type = "search", favorite = true, full = true) => {
     let isFavorite = gifIsFavorite(data.id);
 
-    const createGifContainer = creatorElement(
-        "div",
-        "gif--container",
-        data,
-        type
-    );
+    const createGifContainer = creatorElement("div", "gif--container", data, type);
 
     createGifContainer.insertAdjacentHTML(
         "beforeend",
@@ -253,37 +232,38 @@ export const gifLayout = (data, parent, type = "search") => {
     const createActionContainer = creatorElement("div", "gif--hover-container");
     const createActionButtons = creatorElement("div", "gif--content-actions");
 
-    const favorite = createActionElement(
-        favoriteGif,
-        data,
-        `<i class="${isFavorite ? "fas" : "far"} fa-heart"></i>`
-    );
+    if (favorite) {
+        const favorite = createActionElement(
+            favoriteGif,
+            data,
+            `<i class="${isFavorite ? "fas" : "far"} fa-heart"></i>`
+        );
+        createActionButtons.appendChild(favorite);
+    }
 
     const download = createActionElement(
         downloadGif,
         data,
         `<span class="material-icons">download</span>`
     );
-
-    const fullScreen = createActionElement(
-        fullScreenGif,
-        data,
-        `<i class="fas fa-expand-alt"></i>`,
-        type
-    );
-
-    createActionButtons.appendChild(favorite);
     createActionButtons.appendChild(download);
-    createActionButtons.appendChild(fullScreen);
+
+    if (full) {
+        const fullScreen = createActionElement(
+            fullScreenGif,
+            data,
+            `<i class="fas fa-expand-alt"></i>`,
+            type
+        );
+        createActionButtons.appendChild(fullScreen);
+    }
 
     createActionContainer.appendChild(createActionButtons);
 
     createActionContainer.insertAdjacentHTML(
         "beforeend",
         `<div class="gif--info">
-            <p class="gif--info-subtitle">${
-                data.username ? data.username : "Anonymous"
-            }</p>
+            <p class="gif--info-subtitle">${data.username ? data.username : "Anonymous"}</p>
             <p class="gif--info-title">${data.title}</p>
         </div>`
     );
@@ -293,7 +273,7 @@ export const gifLayout = (data, parent, type = "search") => {
     return createGifContainer;
 };
 
-if(window.location.pathname == "/favorites" || window.location.pathname == "/favorites.html") {
-    console.log("Holita")
+if (window.location.pathname == "/favorites" || window.location.pathname == "/favorites.html") {
+    console.log("Holita");
     favoriteGifs();
 }

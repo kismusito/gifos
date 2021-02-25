@@ -1,0 +1,10 @@
+#my_uploaded_gifs {
+    @include custom_center(row , center , flex-start);
+    flex-wrap: wrap;
+
+    .gif--container {
+        width: 31%;
+        height: 200px;
+        margin-right: 1%;
+    }
+}

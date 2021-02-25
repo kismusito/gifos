@@ -1,4 +1,5 @@
 import { uploadGifo, getGifs } from "./actions.js";
+import { gifLayout } from "./layouts.js";
 
 const steps = {
     step_zero: {
@@ -117,11 +118,21 @@ function stopBrowserRecord() {
 }
 
 function loadingProccessGif() {
-    console.log("loading");
+    const loading = document.createElement("div"); 
+    loading.className = "loadingScreen";
+    loading.innerHTML = `
+        <div class="spiner_loading"></div>
+        <p>Estamos subiendo tu gifo</p>
+    `;
+    return loading;
 }
 
-function gifUploadedSuccessfull(gif) {
+
+function gifUploadedSuccessfull(gif , container) {
     const getLocalUploads = localStorage.getItem("local-uploads");
+    container.innerHTML = "";
+    container.appendChild(gifLayout(gif.data , "" , "myGifos" , false , false))
+
     if (getLocalUploads) {
         const parseUploads = JSON.parse(getLocalUploads);
         if (parseUploads) {
@@ -136,13 +147,21 @@ function gifUploadedSuccessfull(gif) {
 }
 
 async function uploadGifoFinish(record) {
-    loadingProccessGif();
+    const getContainerGifo = document.querySelector(".container_create_gifo");
+    const gifoLoading = loadingProccessGif(getContainerGifo);
+    getContainerGifo.appendChild(gifoLoading);
+
     const uploadImage = await uploadGifo(record.blob);
     const gif = await getGifs(`gifs/${uploadImage.data.id}?`);
-    gifUploadedSuccessfull(gif);
+
+    getContainerGifo.removeChild(gifoLoading)
+    gifUploadedSuccessfull(gif , document.getElementById("gifos_content--content"));
 }
 
-function finishRecord(container, record, button, main_container) {
+function finishRecord(container, record, button, main_container, counter, itemCounter) {
+    counter.removeChild(itemCounter);
+    const getButtonContainer = document.getElementById("button_element");
+
     stopBrowserRecord();
     record.stopRecording((gif) => {
         stepManager("step_three", container, button);
@@ -156,11 +175,26 @@ function finishRecord(container, record, button, main_container) {
         createButtonFinish.className = "btn_purple";
         createButtonFinish.innerHTML = "Finalizar";
 
+        const createButtonCancel = document.createElement("button");
+        createButtonCancel.className = "btn_purple";
+        createButtonCancel.innerHTML = "Repetir";
+
         createButtonFinish.addEventListener("click", () => {
+            getButtonContainer.removeChild(createButtonCancel);
+            getButtonContainer.removeChild(createButtonFinish);
+
             uploadGifoFinish(record);
         });
 
-        main_container.appendChild(createButtonFinish);
+        createButtonCancel.addEventListener("click", (_) => {
+            getButtonContainer.removeChild(createButtonCancel);
+            getButtonContainer.removeChild(createButtonFinish);
+
+            createFirstStep(container);
+        });
+
+        getButtonContainer.appendChild(createButtonFinish);
+        getButtonContainer.appendChild(createButtonCancel);
 
         const createGif = document.createElement("img");
         createGif.src = gif;
@@ -169,9 +203,34 @@ function finishRecord(container, record, button, main_container) {
     });
 }
 
+function startCounter(item) {
+    let time = {
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+    };
+
+    setInterval((_) => {
+        time.seconds++;
+        if (time.seconds >= 60) {
+            time.seconds = 0;
+            time.minutes++;
+        }
+
+        if (time.minutes >= 60) {
+            time.minutes = 0;
+            time.hours++;
+        }
+
+        item.innerHTML = time.hours + " : " + time.minutes + " : " + time.seconds;
+    }, 1000);
+}
+
 function startRecord(container, button) {
     const videoPreview = document.getElementById("video_preview");
+    const counter = document.getElementById("couter");
     const getMainCotainer = document.querySelector(".main_container_create_gifo");
+    const getButtonContainer = document.getElementById("button_element");
     if (videoPreview) {
         const record = RecordRTC(videoPreview.srcObject, {
             type: "gif",
@@ -179,14 +238,18 @@ function startRecord(container, button) {
             quality: 10,
             width: 360,
             hidden: 240,
-            onGifRecordingStarted: () => {
-                console.log("started");
-            },
         });
         record.startRecording();
 
         if (getMainCotainer) {
-            getMainCotainer.removeChild(button);
+            getButtonContainer.removeChild(button);
+
+            const counterItem = document.createElement("div");
+            counter.appendChild(counterItem);
+
+            if (counter) {
+                startCounter(counterItem);
+            }
 
             const createButtonStop = document.createElement("button");
             createButtonStop.id = "button_step";
@@ -194,7 +257,14 @@ function startRecord(container, button) {
             createButtonStop.innerHTML = "Parar";
 
             createButtonStop.addEventListener("click", () => {
-                finishRecord(container, record, createButtonStop, getMainCotainer);
+                finishRecord(
+                    container,
+                    record,
+                    createButtonStop,
+                    getMainCotainer,
+                    counter,
+                    counterItem
+                );
             });
 
             getMainCotainer.appendChild(createButtonStop);
@@ -202,33 +272,43 @@ function startRecord(container, button) {
     }
 }
 
+function createFirstStep(getContainer) {
+    let actualStep = "step_zero";
+    const getButtonContainer = document.getElementById("button_element");
+
+    const getButtonStep = document.createElement("button");
+    getButtonStep.id = "button_step";
+    getButtonStep.className = "btn_purple";
+    getButtonStep.innerHTML = "Comenzar";
+    getButtonContainer.appendChild(getButtonStep);
+
+    stepManager(actualStep, getContainer, getButtonStep);
+
+    getButtonStep.addEventListener("click", () => {
+        if (actualStep == "step_zero") {
+            actualStep = "step_one";
+            stepManager(actualStep, getContainer, getButtonStep);
+        }
+
+        if (actualStep == "step_two") {
+            actualStep = "step_three";
+            startRecord(getContainer, getButtonStep);
+        }
+
+        if (actualStep == "step_one") {
+            setTimeout(() => {
+                actualStep = "step_two";
+                stepManager(actualStep, getContainer, getButtonStep);
+                getStream(getContainer, actualStep, getButtonStep);
+            }, 200);
+        }
+    });
+}
+
 (() => {
     const getContainer = document.getElementById("gifos_content--content");
-    const getButtonStep = document.getElementById("button_step");
 
     if (getContainer) {
-        let actualStep = "step_zero";
-
-        stepManager(actualStep, getContainer, getButtonStep);
-
-        getButtonStep.addEventListener("click", () => {
-            if (actualStep == "step_zero") {
-                actualStep = "step_one";
-                stepManager(actualStep, getContainer, getButtonStep);
-            }
-
-            if (actualStep == "step_two") {
-                actualStep = "step_three";
-                startRecord(getContainer, getButtonStep);
-            }
-
-            if (actualStep == "step_one") {
-                setTimeout(() => {
-                    actualStep = "step_two";
-                    stepManager(actualStep, getContainer, getButtonStep);
-                    getStream(getContainer, actualStep, getButtonStep);
-                }, 200);
-            }
-        });
+        createFirstStep(getContainer);
     }
 })();

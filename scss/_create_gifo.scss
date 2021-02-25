@@ -34,6 +34,52 @@
         border: 1px solid $color_titles;
         margin-bottom: 10px;
         padding: 20px;
+        overflow: hidden;
+
+        .loadingScreen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: $color_titles;
+            z-index: 99;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: appear_loading 1s linear;
+
+            @keyframes appear_loading {
+                from {
+                    left: -200px;
+                }
+                to {
+                    left: 0;
+                }
+            }
+
+            .spiner_loading {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                border-width: 2px;
+                border-style: solid;
+                border-color: $color_hover_text $color_hover_text transparent $color_hover_text;
+                animation: rotate_spiner 1s infinite linear;
+
+                @keyframes rotate_spiner {
+                    to {
+                        transform: rotate(360deg);
+                    }
+                }
+            }
+
+            p {
+                margin-top: 10px;
+                color: $color_hover_text;
+            }
+        }
 
         .gifos_content {
             position: relative;
@@ -51,7 +97,7 @@
                 border-color: $color_text_variant;
                 border-style: solid;
             }
-    
+
             .shape_top_left {
                 top: 0;
                 left: 0;
@@ -83,6 +129,7 @@
             #gifos_content--content {
                 text-align: center;
                 max-width: 480px;
+                width: 480px;
 
                 h2 {
                     color: $color_titles;
@@ -99,14 +146,31 @@
                     line-height: 1.8em;
                     color: $color_text;
                 }
+
+                #final_gif_preview_to_upload {
+                    width: 480px;
+                }
             }
 
             video {
                 max-width: 480px;
             }
         }
+    }
 
-        
+    #couter {
+        max-width: 688px;
+        width: 688px;
+        margin: 10px auto;
+        text-align: right;
+        color: $color_titles;
+        font-family: $bold;
+    }
+
+    #button_element {
+        button {
+            margin: 0 10px;
+        }
     }
 
     .separator_steps {

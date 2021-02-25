@@ -22,7 +22,7 @@ const noFavoritesFound = (_) => {
                 if (gifs.length > 0) {
                     gifs.map((gif) => {
                         myGifosContainer.appendChild(
-                            gifLayout(gif, myGifosContainer, "favorite")
+                            gifLayout(gif, myGifosContainer, "uploaded" , false)
                         );
                     });
                 } else {
