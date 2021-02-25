@@ -1,3 +1,5 @@
+import { uploadGifo } from './actions.js'
+
 const steps = {
     step_zero: {
         heading: true,
@@ -123,16 +125,28 @@ function startRecord(container, button) {
             },
         });
         record.startRecording();
+
         setTimeout((_) => {
             record.stopRecording((gif) => {
                 stepManager("step_three", container, button);
                 pauseVideos();
                 container.innerHTML = "";
+
                 const createGif = document.createElement("img");
                 createGif.src = gif;
+                createGif.id = "final_gif_preview_to_upload";
                 container.appendChild(createGif);
             });
-        }, 3000);
+        }, 5000);
+    }
+}
+
+async function finalStep() {
+    const getPreviewImage = document.getElementById("final_gif_preview_to_upload");
+    if(getPreviewImage) {
+        
+        const uploadImage = await uploadGifo(getPreviewImage.src)
+        console.log(uploadImage)
     }
 }
 
@@ -150,7 +164,12 @@ function startRecord(container, button) {
             stepManager(actualStep, getContainer, getButtonStep);
         }
 
+        if (actualStep == "step_three") {
+            finalStep()
+        }
+
         if (actualStep == "step_two") {
+            actualStep = "step_three";
             startRecord(getContainer, getButtonStep);
         }
 

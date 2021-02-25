@@ -1,4 +1,4 @@
-import { APIKEY, APIURL } from "./config.js";
+import { APIKEY, APIURL, APIURLUPLOAD } from "./config.js";
 
 const getCompleteURL = (query) => {
     return APIURL + query + "api_key=" + APIKEY;
@@ -29,6 +29,19 @@ export const getTrendingGifs = async (totalSlides = 8) => {
 
 export const getTrendingSearchesGifs = async () => {
     const request = await fetch(getCompleteURL(`trending/searches?limit=5&`));
+    const convertRequest = await request.json();
+
+    return convertRequest;
+};
+
+export const uploadGifo = async (gif) => {
+    const formData = new FormData();
+    formData.append("file", gif);
+
+    const request = await fetch(APIURLUPLOAD + "?api_key=" + APIKEY, {
+        method: "POST",
+        body: formData,
+    });
     const convertRequest = await request.json();
 
     return convertRequest;
