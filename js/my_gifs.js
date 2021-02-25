@@ -13,7 +13,7 @@ const noFavoritesFound = (_) => {
 };
 
 (() => {
-    const getMyGifos = localStorage.getItem("uploaded-gifs");
+    const getMyGifos = localStorage.getItem("local-uploads");
     const myGifosContainer = document.getElementById("my_uploaded_gifs");
     if (myGifosContainer) {
         if (getMyGifos) {

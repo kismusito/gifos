@@ -1,4 +1,4 @@
-import { uploadGifo } from './actions.js'
+import { uploadGifo, getGifs } from "./actions.js";
 
 const steps = {
     step_zero: {
@@ -97,6 +97,7 @@ function getStream(container, toStep, button) {
             },
         })
         .then(async (stream) => {
+            window.streamReference = stream;
             stepManager(toStep, container, button);
             container.innerHTML = "";
             const createVideoElement = document.createElement("video");
@@ -111,8 +112,66 @@ function getStream(container, toStep, button) {
         });
 }
 
+function stopBrowserRecord() {
+    window.streamReference.stop();
+}
+
+function loadingProccessGif() {
+    console.log("loading");
+}
+
+function gifUploadedSuccessfull(gif) {
+    const getLocalUploads = localStorage.getItem("local-uploads");
+    if (getLocalUploads) {
+        const parseUploads = JSON.parse(getLocalUploads);
+        if (parseUploads) {
+            const newUploads = [gif.data, ...parseUploads];
+            localStorage.setItem("local-uploads", JSON.stringify(newUploads));
+        } else {
+            localStorage.setItem("local-uploads", JSON.stringify([gif.data]));
+        }
+    } else {
+        localStorage.setItem("local-uploads", JSON.stringify([gif.data]));
+    }
+}
+
+async function uploadGifoFinish(record) {
+    loadingProccessGif();
+    const uploadImage = await uploadGifo(record.blob);
+    const gif = await getGifs(`gifs/${uploadImage.data.id}?`);
+    gifUploadedSuccessfull(gif);
+}
+
+function finishRecord(container, record, button, main_container) {
+    stopBrowserRecord();
+    record.stopRecording((gif) => {
+        stepManager("step_three", container, button);
+        pauseVideos();
+        container.innerHTML = "";
+
+        main_container.removeChild(button);
+
+        const createButtonFinish = document.createElement("button");
+        createButtonFinish.id = "button_step";
+        createButtonFinish.className = "btn_purple";
+        createButtonFinish.innerHTML = "Finalizar";
+
+        createButtonFinish.addEventListener("click", () => {
+            uploadGifoFinish(record);
+        });
+
+        main_container.appendChild(createButtonFinish);
+
+        const createGif = document.createElement("img");
+        createGif.src = gif;
+        createGif.id = "final_gif_preview_to_upload";
+        container.appendChild(createGif);
+    });
+}
+
 function startRecord(container, button) {
     const videoPreview = document.getElementById("video_preview");
+    const getMainCotainer = document.querySelector(".main_container_create_gifo");
     if (videoPreview) {
         const record = RecordRTC(videoPreview.srcObject, {
             type: "gif",
@@ -126,27 +185,20 @@ function startRecord(container, button) {
         });
         record.startRecording();
 
-        setTimeout((_) => {
-            record.stopRecording((gif) => {
-                stepManager("step_three", container, button);
-                pauseVideos();
-                container.innerHTML = "";
+        if (getMainCotainer) {
+            getMainCotainer.removeChild(button);
 
-                const createGif = document.createElement("img");
-                createGif.src = gif;
-                createGif.id = "final_gif_preview_to_upload";
-                container.appendChild(createGif);
+            const createButtonStop = document.createElement("button");
+            createButtonStop.id = "button_step";
+            createButtonStop.className = "btn_purple";
+            createButtonStop.innerHTML = "Parar";
+
+            createButtonStop.addEventListener("click", () => {
+                finishRecord(container, record, createButtonStop, getMainCotainer);
             });
-        }, 5000);
-    }
-}
 
-async function finalStep() {
-    const getPreviewImage = document.getElementById("final_gif_preview_to_upload");
-    if(getPreviewImage) {
-        
-        const uploadImage = await uploadGifo(getPreviewImage.src)
-        console.log(uploadImage)
+            getMainCotainer.appendChild(createButtonStop);
+        }
     }
 }
 
@@ -154,31 +206,29 @@ async function finalStep() {
     const getContainer = document.getElementById("gifos_content--content");
     const getButtonStep = document.getElementById("button_step");
 
-    let actualStep = "step_zero";
+    if (getContainer) {
+        let actualStep = "step_zero";
 
-    stepManager(actualStep, getContainer, getButtonStep);
+        stepManager(actualStep, getContainer, getButtonStep);
 
-    getButtonStep.addEventListener("click", () => {
-        if (actualStep == "step_zero") {
-            actualStep = "step_one";
-            stepManager(actualStep, getContainer, getButtonStep);
-        }
-
-        if (actualStep == "step_three") {
-            finalStep()
-        }
-
-        if (actualStep == "step_two") {
-            actualStep = "step_three";
-            startRecord(getContainer, getButtonStep);
-        }
-
-        if (actualStep == "step_one") {
-            setTimeout(() => {
-                actualStep = "step_two";
+        getButtonStep.addEventListener("click", () => {
+            if (actualStep == "step_zero") {
+                actualStep = "step_one";
                 stepManager(actualStep, getContainer, getButtonStep);
-                getStream(getContainer, actualStep, getButtonStep);
-            }, 200);
-        }
-    });
+            }
+
+            if (actualStep == "step_two") {
+                actualStep = "step_three";
+                startRecord(getContainer, getButtonStep);
+            }
+
+            if (actualStep == "step_one") {
+                setTimeout(() => {
+                    actualStep = "step_two";
+                    stepManager(actualStep, getContainer, getButtonStep);
+                    getStream(getContainer, actualStep, getButtonStep);
+                }, 200);
+            }
+        });
+    }
 })();
