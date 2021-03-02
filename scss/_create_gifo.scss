@@ -65,7 +65,8 @@
                 border-radius: 50%;
                 border-width: 2px;
                 border-style: solid;
-                border-color: $color_hover_text $color_hover_text transparent $color_hover_text;
+                border-color: $color_hover_text $color_hover_text transparent
+                    $color_hover_text;
                 animation: rotate_spiner 1s infinite linear;
 
                 @keyframes rotate_spiner {
@@ -215,6 +216,32 @@
             width: 200px;
             height: 100px;
             background-repeat: no-repeat;
+        }
+    }
+
+    @media screen and (max-width: 550px) {
+        .container_create_gifo {
+            width: 95%;
+            padding: 10px;
+
+            .gifos_content {
+                #gifos_content--content {
+                    width: 100%;
+
+                    #video_preview {
+                        width: 100%;
+                    }
+
+                    #final_gif_preview_to_upload {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        #couter {
+            max-width: 100%;
+            width: 95%;
         }
     }
 }

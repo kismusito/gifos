@@ -53,3 +53,10 @@ body {
         color: $color_hover_text;
     }
 }
+
+
+@media screen and (max-width: 550px) {
+    .hide_on_mobile {
+        display: none !important;
+    }
+}
