@@ -12,6 +12,10 @@
         .decorated_text_color {
             color: $color_text_variant;
         }
+
+        @media screen and (max-width: 550px) {
+            font-size: 1.8em;
+        }
     }
 
     .search_container {
@@ -74,27 +78,42 @@
                 }
             }
         }
+
+        @media screen and (max-width: 550px) {
+            .prediction_search_container {
+                width: 300px;
+            }
+
+            img {
+                width: 70%;
+            }
+        }
     }
 
     .searched_gifs_section {
         width: 100%;
 
-
         #searched_gifs_section--title {
             margin-top: 80px;
         }
-    
+
         #search_area_section {
             @include custom_center(row, center, space-between);
             flex-wrap: wrap;
             width: 100%;
             padding: 10px;
             margin: 20px 0;
-    
+
             .gif--container {
                 width: 24%;
                 height: 180px;
                 margin-right: 1%;
+            }
+
+            @media screen and (max-width: 550px) {
+                .gif--container {
+                    width: 48%;
+                }
             }
         }
 
@@ -102,11 +121,11 @@
             @include custom_center(column, center, center);
             width: 100%;
         }
-    
+
         #display_info {
             @include custom_center(column, center, center);
             width: 100%;
-            
+
             .no_found_gifs_text {
                 margin-top: 15px;
                 font-family: $bold;
@@ -115,6 +134,4 @@
             }
         }
     }
-
-    
 }

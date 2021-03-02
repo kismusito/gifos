@@ -19,6 +19,17 @@
         height: 180px;
         margin-right: 1%;
     }
+
+    @media screen and (max-width: 550px){
+
+        justify-content: space-between;
+        padding: 0 10px;
+
+        .gif--container {
+            width: 48%;
+            margin-right: 0;
+        }
+    }
 }
 
 .no_found_favorite {

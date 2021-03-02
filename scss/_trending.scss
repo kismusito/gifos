@@ -82,4 +82,18 @@
     .arrow_right {
         right: -60px;
     }
+
+    @media screen and (max-width: 550px) {
+
+
+        .arrow_left {
+            left: 35%;
+            bottom: -70px;
+        }
+    
+        .arrow_right {
+            right: 35%;
+            bottom: -70px;
+        }
+    }
 }

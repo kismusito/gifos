@@ -21,29 +21,38 @@ function evaluateChangeTheme(field, theme, triggerThemeChange) {
 }
 
 (() => {
-    const getChangeThemeTrigger = document.getElementById(
-        "change_theme_trigger"
+    const getChangeThemeTrigger = document.querySelectorAll(
+        ".change_theme_trigger"
     );
     const actualTheme = localStorage.getItem("theme");
     var styleElement = document.createElement("link");
 
-    getChangeThemeTrigger.addEventListener("click", (e) => {
-        const getAttributes = e.target.attributes;
-        if (getAttributes) {
-            const getThemeToChange = getAttributes["area-theme-change"].value;
-            if (getThemeToChange) {
-                document
-                    .getElementsByTagName("HEAD")[0]
-                    .removeChild(styleElement);
-                localStorage.setItem("theme", getThemeToChange);
-                evaluateChangeTheme(
-                    styleElement,
-                    getThemeToChange,
-                    getChangeThemeTrigger
-                );
-            }
-        }
-    });
+    console.log(getChangeThemeTrigger);
 
-    evaluateChangeTheme(styleElement, actualTheme, getChangeThemeTrigger);
+    for (let i = 0; i < getChangeThemeTrigger.length; i++) {
+        getChangeThemeTrigger[i].addEventListener("click", (e) => {
+            const getAttributes = e.target.attributes;
+            if (getAttributes) {
+                const getThemeToChange =
+                    getAttributes["area-theme-change"].value;
+                if (getThemeToChange) {
+                    document
+                        .getElementsByTagName("HEAD")[0]
+                        .removeChild(styleElement);
+                    localStorage.setItem("theme", getThemeToChange);
+                    evaluateChangeTheme(
+                        styleElement,
+                        getThemeToChange,
+                        getChangeThemeTrigger[i]
+                    );
+                }
+            }
+        });
+
+        evaluateChangeTheme(
+            styleElement,
+            actualTheme,
+            getChangeThemeTrigger[i]
+        );
+    }
 })();

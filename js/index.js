@@ -5,3 +5,4 @@ import "./favorite_gifs.js";
 import "./my_gifs.js";
 import "./createGif.js";
 import "./modal.js";
+import "./menu.js";
