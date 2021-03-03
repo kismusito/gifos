@@ -11,10 +11,7 @@
         <link rel="stylesheet" href="scss/style.css" />
 
         <!-- Import Material UI Icons -->
-        <link
-            href="https://fonts.googleapis.com/css2?family=Material+Icons"
-            rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" />
 
         <!-- Import font awesome kit, this library has a problem because the performance of the site is very low -->
         <script
@@ -22,9 +19,6 @@
             src="https://kit.fontawesome.com/99b4d81792.js"
             crossorigin="anonymous"
         ></script>
-
-        <!-- Load main chunk JS -->
-        <script defer type="module" src="js/index.js"></script>
     </head>
     <body>
         <div class="separator_page"></div>
@@ -77,16 +71,13 @@
 
             <section class="search_section">
                 <h2>
-                    Inspírate, busca, guarda, y crea <br & />
+                    Inspírate, busca, guarda, y crea <br />
                     los mejores
                     <span class="decorated_text_color">GIFOS</span>
                 </h2>
 
                 <div class="search_container">
-                    <img
-                        src="../assets/img/ilustra_header.svg"
-                        alt="search input illustration"
-                    />
+                    <img src="../assets/img/ilustra_header.svg" alt="search input illustration" />
                     <div class="prediction_search_container">
                         <input
                             type="text"
@@ -121,24 +112,14 @@
                 </div>
 
                 <div class="trending_slider--container">
-                    <div
-                        class="arrow_button arrow_left"
-                        id="trending_slider--prev_button"
-                    >
-                        <span class="material-icons">
-                            keyboard_arrow_left
-                        </span>
+                    <div class="arrow_button arrow_left" id="trending_slider--prev_button">
+                        <span class="material-icons"> keyboard_arrow_left </span>
                     </div>
                     <div class="trending_slider--container-content">
                         <div id="trending_slider--content"></div>
                     </div>
-                    <div
-                        class="arrow_button arrow_right"
-                        id="trending_slider--next_button"
-                    >
-                        <span class="material-icons">
-                            keyboard_arrow_right
-                        </span>
+                    <div class="arrow_button arrow_right" id="trending_slider--next_button">
+                        <span class="material-icons"> keyboard_arrow_right </span>
                     </div>
                 </div>
             </div>
@@ -162,5 +143,8 @@
         </div>
 
         <div class="separator_page"></div>
+
+        <!-- Load main chunk JS -->
+        <script type="module" src="js/index.js"></script>
     </body>
 </html>
