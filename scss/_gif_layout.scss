@@ -26,7 +26,7 @@
 
             .gif--content-action-item {
                 @include custom_center(row, center, center);
-                opacity: .7;
+                opacity: 0.7;
                 cursor: pointer;
                 width: 32px;
                 height: 32px;
@@ -34,7 +34,7 @@
                 background-color: #fff;
                 margin: 0 5px;
                 color: $purple_color;
-                transition: .2s all;
+                transition: 0.2s all;
 
                 &:hover {
                     opacity: 1;
@@ -60,9 +60,11 @@
         }
     }
 
-    &:hover {
-        .gif--hover-container {
-            display: block;
+    @media screen and (min-width: 600px) {
+        &:hover {
+            .gif--hover-container {
+                display: block;
+            }
         }
     }
 }
