@@ -1,4 +1,4 @@
-export function elementCreator({ type, className, attributes, click, text }) {
+export function elementCreator({ type, className, attributes, click, text , icon}) {
     const createElement = document.createElement(type);
     createElement.className = className;
 
@@ -8,8 +8,11 @@ export function elementCreator({ type, className, attributes, click, text }) {
 
     createElement.addEventListener("click", (e) => click(e.target));
 
-    const textNode = document.createTextNode(text);
-    createElement.appendChild(textNode);
+    const iconElement = document.createElement("span");
+    iconElement.className = "material-icons"
+    iconElement.innerHTML = icon;
+
+    createElement.innerHTML = iconElement.outerHTML + text;
 
     return createElement;
 }

@@ -22,6 +22,8 @@ async function getSearchedWord(element, start = 0, reload = true) {
     const getGifsContainerActions = getByID("search_area_actions");
     const getTitleSearched = getByID("searched_gifs_section--title");
     const searchInput = getByID("user_prediction");
+    const iconRight = getByID("icon_right");
+    const iconLeft = getByID("icon_left");
     const getTrendingContainer = document.querySelector(
         ".trending_searchs--container"
     );
@@ -41,7 +43,10 @@ async function getSearchedWord(element, start = 0, reload = true) {
 
             allGifs = [...gifData, ...allGifs];
 
-            localStorage.setItem("actual_gifs_searched", JSON.stringify(allGifs));
+            localStorage.setItem(
+                "actual_gifs_searched",
+                JSON.stringify(allGifs)
+            );
 
             getContainerPredictions.innerHTML = "";
             getTrendingContainer.style.display = "none";
@@ -63,7 +68,7 @@ async function getSearchedWord(element, start = 0, reload = true) {
 
             for (let i in gifData) {
                 getGifsContainer.appendChild(
-                    gifLayout(gifData[i], getGifsContainer , "search")
+                    gifLayout(gifData[i], getGifsContainer, "search")
                 );
             }
 
@@ -109,6 +114,7 @@ async function getSearch(term, icon) {
                             value: result.name,
                         },
                     ],
+                    icon: "search",
                     click: getSearchedWord,
                     text: result.name,
                 };
@@ -124,27 +130,80 @@ async function getSearch(term, icon) {
 
 var timeout = null;
 
+function createSpanIcon(icon, onClick) {
+    const iconElement = document.createElement("span");
+    iconElement.className = "material-icons";
+    iconElement.innerHTML = icon;
+    iconElement.addEventListener("click", onClick);
+    return iconElement;
+}
+
+function clearSearch() {
+    const getContainerPredictions = getByID("predictions_area_section");
+    const searchInput = getByID("user_prediction");
+    const iconRight = getByID("icon_right");
+    const iconLeft = getByID("icon_left");
+
+    if (getContainerPredictions && searchInput) {
+        getContainerPredictions.innerHTML = "";
+        searchInput.value = "";
+
+        if (iconRight) {
+            iconRight.innerHTML = ""
+            iconRight.appendChild(createSpanIcon("search", searchValue));
+        }
+
+        if(iconLeft) {
+            iconLeft.style.display = "none"
+        }
+    }
+}
+
+function searchValue() {
+    const searchInput = getByID("user_prediction");
+    if (searchInput) {
+        if (searchInput.value.length > 0) {
+            getSearch(searchInput.value, searchIcon);
+        } else {
+            alert("Debes buscar algo...");
+        }
+    }
+}
+
 (async () => {
     const searchInput = getByID("user_prediction");
     const trending_searchs = getByID("trending_searchs");
     const searchIcon = getByID("loader_elements");
+    const iconRight = getByID("icon_right");
+    const iconLeft = getByID("icon_left");
 
     if (searchInput) {
         searchInput.addEventListener("keyup", (e) => {
             window.clearTimeout(timeout);
             searchIcon.style.display = "block";
+            iconRight.style.display = "none";
 
-            timeout = setTimeout(
-                () => getSearch(e.target.value, searchIcon),
-                1000
-            );
+            timeout = setTimeout(() => {
+                getSearch(e.target.value, searchIcon);
+                iconRight.style.display = "block";
+                iconLeft.style.display = "block";
+                iconRight.innerHTML = "";
+                iconRight.appendChild(createSpanIcon("close", clearSearch));
+            }, 1000);
 
             if (e.key == "Enter") {
                 window.clearTimeout(timeout);
                 searchIcon.style.display = "none";
+                iconLeft.style.display = "block";
+                iconRight.innerHTML = "";
+                iconRight.appendChild(createSpanIcon("close", clearSearch));
                 getSearchedWord(e.target.value, searchIcon);
             }
         });
+    }
+
+    if (iconRight) {
+        iconRight.appendChild(createSpanIcon("search", searchValue));
     }
 
     if (trending_searchs) {

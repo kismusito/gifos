@@ -54,6 +54,14 @@ body {
     }
 }
 
+.position_relative {
+    position: relative;
+}
+
+.center_horizontal {
+    display: flex;
+    align-items: center;
+}
 
 @media screen and (max-width: 550px) {
     .hide_on_mobile {

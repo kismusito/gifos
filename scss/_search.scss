@@ -39,7 +39,7 @@
                 font-size: 15px;
                 background-color: transparent;
                 width: 100%;
-                padding: 0 20px;
+                padding: 0 30px;
             }
 
             #loader_elements {
@@ -70,11 +70,44 @@
 
             .predictions_area_item {
                 cursor: pointer;
-                padding: 5px 20px;
+                padding: 5px 0;
                 color: #9cafc3;
+                display: flex;
+                align-items: center;
+
+                span {
+                    margin-right: 10px;
+                }
 
                 &:hover {
                     background-color: #f3f3f3;
+                }
+            }
+
+            @mixin icon {
+                position: absolute;
+                width: 25px;
+                height: 25px;
+
+                span {
+                    font-size: 1.8em;
+                }
+            }
+
+            #icon_left {
+                @include icon;
+                left: 0;
+                display: none;
+            }
+
+            #icon_right {
+                @include icon;
+                right: 0;
+                cursor: pointer;
+
+                span {
+                    color: $color_titles;
+                    font-weight: bold;
                 }
             }
         }

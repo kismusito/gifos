@@ -27,8 +27,6 @@ function evaluateChangeTheme(field, theme, triggerThemeChange) {
     const actualTheme = localStorage.getItem("theme");
     var styleElement = document.createElement("link");
 
-    console.log(getChangeThemeTrigger);
-
     for (let i = 0; i < getChangeThemeTrigger.length; i++) {
         getChangeThemeTrigger[i].addEventListener("click", (e) => {
             const getAttributes = e.target.attributes;
