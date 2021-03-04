@@ -1,8 +1,4 @@
-import {
-    getSuggestionGifs,
-    getGifs,
-    getTrendingSearchesGifs,
-} from "./actions.js";
+import { getSuggestionGifs, getGifs, getTrendingSearchesGifs } from "./actions.js";
 import { elementCreator } from "./creator.js";
 import { gifLayout } from "./layouts.js";
 
@@ -14,24 +10,15 @@ let allGifs = [];
 
 async function getSearchedWord(element, start = 0, reload = true) {
     const selectedQuery =
-        typeof element == "string"
-            ? element
-            : element.getAttribute("area-selected");
+        typeof element == "string" ? element : element.getAttribute("area-selected");
     const getContainerPredictions = getByID("predictions_area_section");
     const getGifsContainer = getByID("search_area_section");
     const getGifsContainerActions = getByID("search_area_actions");
     const getTitleSearched = getByID("searched_gifs_section--title");
-    const searchInput = getByID("user_prediction");
-    const iconRight = getByID("icon_right");
-    const iconLeft = getByID("icon_left");
-    const getTrendingContainer = document.querySelector(
-        ".trending_searchs--container"
-    );
+    const getTrendingContainer = document.querySelector(".trending_searchs--container");
 
     try {
-        const gifs = await getGifs(
-            `gifs/search?q=${selectedQuery}&limit=12&offset=${start}&`
-        );
+        const gifs = await getGifs(`gifs/search?q=${selectedQuery}&limit=12&offset=${start}&`);
 
         const gifData = gifs.data;
         if (gifData.length > 0) {
@@ -43,40 +30,32 @@ async function getSearchedWord(element, start = 0, reload = true) {
 
             allGifs = [...gifData, ...allGifs];
 
-            localStorage.setItem(
-                "actual_gifs_searched",
-                JSON.stringify(allGifs)
-            );
+            localStorage.setItem("actual_gifs_searched", JSON.stringify(allGifs));
 
             getContainerPredictions.innerHTML = "";
             getTrendingContainer.style.display = "none";
 
             getGifsContainerActions.innerText = "";
 
-            searchInput.value = "";
+            clearSearch();
 
             const createButton = document.createElement("button");
             createButton.innerText = "Ver más";
             createButton.setAttribute(
                 "data-pagination-offset",
-                start == 0
-                    ? 12
-                    : gifs.pagination.offset + gifs.pagination.count + 1
+                start == 0 ? 12 : gifs.pagination.offset + gifs.pagination.count + 1
             );
             createButton.className = "btn_purple";
             getTitleSearched.innerHTML = `<h2>${selectedQuery}</h2>`;
 
             for (let i in gifData) {
-                getGifsContainer.appendChild(
-                    gifLayout(gifData[i], getGifsContainer, "search")
-                );
+                getGifsContainer.appendChild(gifLayout(gifData[i], getGifsContainer, "search"));
             }
 
             getGifsContainerActions.appendChild(createButton);
 
             createButton.addEventListener("click", (e) => {
-                const getOffset =
-                    e.target.attributes["data-pagination-offset"].value;
+                const getOffset = e.target.attributes["data-pagination-offset"].value;
                 if (getOffset) {
                     getSearchedWord(selectedQuery, getOffset, false);
                 }
@@ -149,12 +128,12 @@ function clearSearch() {
         searchInput.value = "";
 
         if (iconRight) {
-            iconRight.innerHTML = ""
+            iconRight.innerHTML = "";
             iconRight.appendChild(createSpanIcon("search", searchValue));
         }
 
-        if(iconLeft) {
-            iconLeft.style.display = "none"
+        if (iconLeft) {
+            iconLeft.style.display = "none";
         }
     }
 }
@@ -211,8 +190,7 @@ function searchValue() {
         if (searchs.data) {
             let totalTrendingToShow = 5;
             for (let i in searchs.data) {
-                const generateText =
-                    searchs.data[i] + (i < totalTrendingToShow ? "," : "");
+                const generateText = searchs.data[i] + (i < totalTrendingToShow ? "," : "");
                 const trendingItem = document.createElement("span");
                 trendingItem.appendChild(document.createTextNode(generateText));
                 trendingItem.className = "trending_item_searched";
