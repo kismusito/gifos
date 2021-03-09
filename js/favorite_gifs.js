@@ -1,4 +1,4 @@
-import { gifLayout } from "./layouts.js";
+import { pagination } from "./pagination.js";
 
 const noFavoritesFound = (_) => {
     return `<div class="no_found_favorite">
@@ -13,7 +13,7 @@ const noFavoritesFound = (_) => {
             </div>`;
 };
 
-export const favoriteGifs = _ => {
+export const favoriteGifs = (_) => {
     const getFavoriteGifs = localStorage.getItem("local-favorites");
     const favoriteContainer = document.getElementById("favorite_gifs");
     if (favoriteContainer) {
@@ -22,11 +22,16 @@ export const favoriteGifs = _ => {
             if (gifs) {
                 favoriteContainer.innerHTML = "";
                 if (gifs.length > 0) {
-                    gifs.map((gif) => {
-                        favoriteContainer.appendChild(
-                            gifLayout(gif, favoriteContainer , "favorite")
-                        );
-                    });
+                    const itemsPerPage = 12;
+                    const totalPages = Math.ceil(gifs.length / itemsPerPage);
+                    pagination(
+                        gifs,
+                        itemsPerPage,
+                        1,
+                        favoriteContainer,
+                        "favorite",
+                        totalPages
+                    );
                 } else {
                     favoriteContainer.innerHTML = noFavoritesFound();
                 }
@@ -37,4 +42,4 @@ export const favoriteGifs = _ => {
             favoriteContainer.innerHTML = noFavoritesFound();
         }
     }
-}
+};

@@ -1,0 +1,13 @@
+.button_pagination_container {
+    @include custom_center(row , center ,center);
+    width: 100%;
+    margin: 20px 0;
+
+    .btn_pagination {
+        border: 0;
+        background-color: transparent;
+        font-size: 1.1em;
+        margin: 0 5px;
+        cursor: pointer;
+    }
+}

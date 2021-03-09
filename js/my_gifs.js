@@ -1,4 +1,4 @@
-import { gifLayout } from "./layouts.js";
+import { pagination } from "./pagination.js";
 
 const noFavoritesFound = (_) => {
     return `<div class="no_found_favorite">
@@ -20,11 +20,16 @@ const noFavoritesFound = (_) => {
             const gifs = JSON.parse(getMyGifos);
             if (gifs) {
                 if (gifs.length > 0) {
-                    gifs.map((gif) => {
-                        myGifosContainer.appendChild(
-                            gifLayout(gif, myGifosContainer, "uploaded" , false)
-                        );
-                    });
+                    const itemsPerPage = 12;
+                    const totalPages = Math.ceil(gifs.length / itemsPerPage);
+                    pagination(
+                        gifs,
+                        itemsPerPage,
+                        1,
+                        myGifosContainer,
+                        "uploaded",
+                        totalPages
+                    );
                 } else {
                     myGifosContainer.innerHTML = noFavoritesFound();
                 }

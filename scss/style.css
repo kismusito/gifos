@@ -812,6 +812,19 @@ nav {
           display: flex;
           align-items: center; } }
 
+.button_pagination_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 20px 0; }
+  .button_pagination_container .btn_pagination {
+    border: 0;
+    background-color: transparent;
+    font-size: 1.1em;
+    margin: 0 5px; }
+
 footer {
   height: 116px; }
   footer .center_footer {
